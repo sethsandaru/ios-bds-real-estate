@@ -13,6 +13,9 @@
 		551C4C911FC5D291006C378D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 551C4C901FC5D291006C378D /* Assets.xcassets */; };
 		551C4C941FC5D291006C378D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 551C4C921FC5D291006C378D /* LaunchScreen.storyboard */; };
 		551C4C9F1FC5D291006C378D /* BDSNhom6Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551C4C9E1FC5D291006C378D /* BDSNhom6Tests.swift */; };
+		5579B48E1FD1DBC30043A2FD /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579B48D1FD1DBC30043A2FD /* CategoryTableViewController.swift */; };
+		5579B4901FD1DC040043A2FD /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579B48F1FD1DC040043A2FD /* CategoryTableViewCell.swift */; };
+		5579B4921FD1DD260043A2FD /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579B4911FD1DD260043A2FD /* Category.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,9 @@
 		551C4C9A1FC5D291006C378D /* BDSNhom6Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BDSNhom6Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		551C4C9E1FC5D291006C378D /* BDSNhom6Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BDSNhom6Tests.swift; sourceTree = "<group>"; };
 		551C4CA01FC5D291006C378D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5579B48D1FD1DBC30043A2FD /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
+		5579B48F1FD1DC040043A2FD /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		5579B4911FD1DD260043A2FD /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,10 +85,13 @@
 			children = (
 				551C4C891FC5D291006C378D /* AppDelegate.swift */,
 				551C4C8B1FC5D291006C378D /* ViewController.swift */,
+				5579B48D1FD1DBC30043A2FD /* CategoryTableViewController.swift */,
+				5579B48F1FD1DC040043A2FD /* CategoryTableViewCell.swift */,
 				551C4C8D1FC5D291006C378D /* Main.storyboard */,
 				551C4C901FC5D291006C378D /* Assets.xcassets */,
 				551C4C921FC5D291006C378D /* LaunchScreen.storyboard */,
 				551C4C951FC5D291006C378D /* Info.plist */,
+				5579B4911FD1DD260043A2FD /* Category.swift */,
 			);
 			path = BDSNhom6;
 			sourceTree = "<group>";
@@ -200,7 +209,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				551C4C8C1FC5D291006C378D /* ViewController.swift in Sources */,
+				5579B4921FD1DD260043A2FD /* Category.swift in Sources */,
 				551C4C8A1FC5D291006C378D /* AppDelegate.swift in Sources */,
+				5579B48E1FD1DBC30043A2FD /* CategoryTableViewController.swift in Sources */,
+				5579B4901FD1DC040043A2FD /* CategoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +420,7 @@
 				551C4CA51FC5D291006C378D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		551C4CA61FC5D291006C378D /* Build configuration list for PBXNativeTarget "BDSNhom6Tests" */ = {
 			isa = XCConfigurationList;
@@ -416,6 +429,7 @@
 				551C4CA81FC5D291006C378D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
