@@ -1,0 +1,6 @@
+framework module Pods_BDSNhom6 {
+  umbrella header "Pods-BDSNhom6-umbrella.h"
+
+  export *
+  module * { export * }
+}
