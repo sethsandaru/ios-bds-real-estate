@@ -18,7 +18,6 @@
 		5531E0D21FD3301E00D76EF4 /* PostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5531E0D11FD3301E00D76EF4 /* PostTableViewController.swift */; };
 		5531E0D41FD3302F00D76EF4 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5531E0D31FD3302F00D76EF4 /* Post.swift */; };
 		5561977A1FD412ED0020B04D /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556197791FD412ED0020B04D /* Comment.swift */; };
-		556197801FD42DB60020B04D /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5561977E1FD42DB40020B04D /* SWRevealViewController.m */; };
 		5579B48E1FD1DBC30043A2FD /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579B48D1FD1DBC30043A2FD /* CategoryTableViewController.swift */; };
 		5579B4901FD1DC040043A2FD /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579B48F1FD1DC040043A2FD /* CategoryTableViewCell.swift */; };
 		5579B4921FD1DD260043A2FD /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579B4911FD1DD260043A2FD /* Category.swift */; };
@@ -51,9 +50,6 @@
 		5531E0D11FD3301E00D76EF4 /* PostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewController.swift; sourceTree = "<group>"; };
 		5531E0D31FD3302F00D76EF4 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		556197791FD412ED0020B04D /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
-		5561977D1FD42DB40020B04D /* BDSNhom6-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDSNhom6-Bridging-Header.h"; sourceTree = "<group>"; };
-		5561977E1FD42DB40020B04D /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
-		5561977F1FD42DB60020B04D /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		5579B48D1FD1DBC30043A2FD /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		5579B48F1FD1DC040043A2FD /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		5579B4911FD1DD260043A2FD /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -111,7 +107,6 @@
 			isa = PBXGroup;
 			children = (
 				556197811FD42DDF0020B04D /* Models */,
-				5561977C1FD42D7B0020B04D /* SWRevealViewController */,
 				551C4C891FC5D291006C378D /* AppDelegate.swift */,
 				551C4C8B1FC5D291006C378D /* ViewController.swift */,
 				5579B48D1FD1DBC30043A2FD /* CategoryTableViewController.swift */,
@@ -133,16 +128,6 @@
 				551C4CA01FC5D291006C378D /* Info.plist */,
 			);
 			path = BDSNhom6Tests;
-			sourceTree = "<group>";
-		};
-		5561977C1FD42D7B0020B04D /* SWRevealViewController */ = {
-			isa = PBXGroup;
-			children = (
-				5561977F1FD42DB60020B04D /* SWRevealViewController.h */,
-				5561977E1FD42DB40020B04D /* SWRevealViewController.m */,
-				5561977D1FD42DB40020B04D /* BDSNhom6-Bridging-Header.h */,
-			);
-			path = SWRevealViewController;
 			sourceTree = "<group>";
 		};
 		556197811FD42DDF0020B04D /* Models */ = {
@@ -332,7 +317,6 @@
 				5579B48E1FD1DBC30043A2FD /* CategoryTableViewController.swift in Sources */,
 				5579B4901FD1DC040043A2FD /* CategoryTableViewCell.swift in Sources */,
 				5531E0D21FD3301E00D76EF4 /* PostTableViewController.swift in Sources */,
-				556197801FD42DB60020B04D /* SWRevealViewController.m in Sources */,
 				5561977A1FD412ED0020B04D /* Comment.swift in Sources */,
 				5531E0D01FD3300300D76EF4 /* PostTableViewCell.swift in Sources */,
 			);
