@@ -83,6 +83,32 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5504B2331FD59D7100A4C81D /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				551C4C8B1FC5D291006C378D /* ViewController.swift */,
+				5579B48D1FD1DBC30043A2FD /* CategoryTableViewController.swift */,
+				5531E0D11FD3301E00D76EF4 /* PostTableViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5504B2341FD59D8E00A4C81D /* ViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				5579B48F1FD1DC040043A2FD /* CategoryTableViewCell.swift */,
+				5531E0CF1FD3300300D76EF4 /* PostTableViewCell.swift */,
+			);
+			path = ViewCells;
+			sourceTree = "<group>";
+		};
+		5504B2351FD59DA400A4C81D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		551C4C7D1FC5D291006C378D = {
 			isa = PBXGroup;
 			children = (
@@ -106,13 +132,11 @@
 		551C4C881FC5D291006C378D /* BDSNhom6 */ = {
 			isa = PBXGroup;
 			children = (
+				5504B2331FD59D7100A4C81D /* Controllers */,
+				5504B2351FD59DA400A4C81D /* Views */,
+				5504B2341FD59D8E00A4C81D /* ViewCells */,
 				556197811FD42DDF0020B04D /* Models */,
 				551C4C891FC5D291006C378D /* AppDelegate.swift */,
-				551C4C8B1FC5D291006C378D /* ViewController.swift */,
-				5579B48D1FD1DBC30043A2FD /* CategoryTableViewController.swift */,
-				5579B48F1FD1DC040043A2FD /* CategoryTableViewCell.swift */,
-				5531E0D11FD3301E00D76EF4 /* PostTableViewController.swift */,
-				5531E0CF1FD3300300D76EF4 /* PostTableViewCell.swift */,
 				551C4C8D1FC5D291006C378D /* Main.storyboard */,
 				551C4C901FC5D291006C378D /* Assets.xcassets */,
 				551C4C921FC5D291006C378D /* LaunchScreen.storyboard */,
