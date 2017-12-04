@@ -8,6 +8,9 @@ target 'BDSNhom6' do
   # Pods for BDSNhom6
 
   pod 'SideMenu'
-
+  pod "NohanaImagePicker"
+  pod 'SwiftyJSON'
+  pod 'ImageSlideshow', '~> 1.4'
+  pod 'Alamofire', '~> 4.5'
 
 end
