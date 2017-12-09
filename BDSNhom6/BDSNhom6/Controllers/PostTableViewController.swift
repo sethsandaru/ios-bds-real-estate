@@ -64,6 +64,13 @@ class PostTableViewController: UITableViewController {
         return cell
     }
     
+    // select row code
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let alert = UIAlertController(title: "Thông báo", message: "Đã chọn item tại row thứ: \(indexPath.row)", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 
     /*
     // Override to support conditional editing of the table view.
