@@ -9,3 +9,11 @@ Team members:
 
 Technologies:
 + Swift
+
+Plugins using:
+https://github.com/opalorange/OpalImagePicker
+https://github.com/SwiftyJSON/SwiftyJSON
+https://github.com/zvonicek/ImageSlideshow
+https://github.com/Alamofire/Alamofire
+
+Special thanks to all!
