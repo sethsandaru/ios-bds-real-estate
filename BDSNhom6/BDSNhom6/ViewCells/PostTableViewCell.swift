@@ -16,6 +16,7 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var imgFeature: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblContent: UITextView!
+    @IBOutlet weak var lblCategory: UILabel!
     
     
     override func awakeFromNib() {

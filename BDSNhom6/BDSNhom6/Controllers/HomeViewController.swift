@@ -26,6 +26,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var skip = 0;
     var totalItem = 0;
     var keyword : String = "";
+    var nowCategory : Int? = nil;
     var isCategorying : Bool = true;
     
     //MARK: Loading config
@@ -37,6 +38,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     /// Text shown during load the TableView
     let loadingLabel = UILabel()
+    
+    // refresh control
+    var refreshControl: UIRefreshControl!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,13 +50,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         
         // init data
-        dataInit();
+        dataInit(keyword: keyword, categoryID: nowCategory);
         getCategories();
         
         // set delegate
         tbPost.delegate = self;
         tbPost.dataSource = self;
         txtSearch.delegate = self;
+        
+        // refresh init
+        refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "Vuốt lên để refresh")
+        refreshControl.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
+        tbPost.addSubview(refreshControl)
         
         // add trang chu
         self.Categories.append(Category(ID: 0, Name: "Trang chủ"));
@@ -100,47 +110,115 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.lblContent.text = row.Content;
         cell.imgFeature.image = Common.Base64ToIMG(str: row.Images[0].Path);
         cell.lblDate.text = dateFormatter.string(from: row.CreatedDate);
+        cell.lblCategory.text = "Loại: " + row.Category!.Name;
         
         // okay
         return cell
     }
     
+    // Chuyển qua trang bài viết khi dc click
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        txtSearch.resignFirstResponder()
         let alert = UIAlertController(title: "Thông báo", message: "Đã chọn item tại row thứ: \(indexPath.row)", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
+    // Load more khi tận cùng
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let last = Posts.count - 1;
+        
+        if last == indexPath.row && Posts.count < totalItem && spinner.isHidden == true
+        {
+            //get more here
+            skip = skip + perPage;
+            
+            // get and no clear anything because get more =.=
+            dataInit(keyword: keyword, categoryID: nowCategory);
+        }
+    }
+    
+    // kéo lên để refresh
+    func refresh(sender:AnyObject) {
+        print("Đã kéo lên")
+        // set lai title
+        refreshControl.attributedTitle = NSAttributedString(string: "Đang refresh lại...");
+        
+        // re config data
+        skip = 0;
+        
+        // clear and get again
+        Posts.removeAll();
+        dataInit(keyword: keyword, categoryID: nowCategory);
+        
+        // tat refresh khi xong
+        refreshControl.endRefreshing()
+        
+        // set lai title
+        refreshControl.attributedTitle = NSAttributedString(string: "Vuốt lên để refresh");
+    }
+    
     
     @IBAction func menuClick(_ sender: UIBarButtonItem) {
-        if let controller = self.storyboard?.instantiateViewController(withIdentifier: "CategoryTableViewController") as? CategoryTableViewController
+        if let controller = self.storyboard?.instantiateViewController(withIdentifier: "SideMenuInfoViewController")
         {
-            if isCategorying == true {
-                return;
-            }
-            
-            controller.Categories = self.Categories;
             let menuLeftNavigationController = UISideMenuNavigationController(rootViewController: controller);
             SideMenuManager.default.menuLeftNavigationController = menuLeftNavigationController;
-            
+
             present(SideMenuManager.default.menuLeftNavigationController!, animated: true, completion: nil)
             
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        txtSearch.resignFirstResponder()
+    }
+    
+    //MARK: Search bar action
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // hide keyboard
+        txtSearch.resignFirstResponder();
+        
+        if (txtSearch!.text?.isEmpty == true)
+        {
+            let alert = UIAlertController(title: "Lỗi", message: "Xin hãy nhập từ khóa trước khi tìm", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Tôi biết rồi", style: UIAlertActionStyle.default, handler: nil));
+            self.present(alert, animated: true, completion: nil)
+            return;
+        }
+        
+        // set keyword
+        keyword = txtSearch.text!;
+        
+        // start to search
+        Posts.removeAll(); // remove all post before search
+        dataInit(keyword: keyword, categoryID: nowCategory);
+        
+        
+    }
+    
     //MARK: Preparing Data
 
-    private func dataInit()
+    private func dataInit(keyword : String, categoryID : Int?)
     {
         // set loading
         startLoadingScreen();
+        tbPost.alpha = 0.4;
         
         // preparing API
         Common.SetController(controller: .Post);
-        let URL : String = Common.GetActionURL(Action: "GetByPaginate") + "?keyword=\(keyword)&categoryID=&activate=true&take=\(perPage)&skip=\(skip)";
+        var URL : String = "";
+        
+        if (categoryID != nil)
+        {
+            URL = Common.GetActionURL(Action: "GetByPaginate") + "?keyword=\(keyword)&categoryID=\(categoryID!)&activate=true&take=\(perPage)&skip=\(skip)";
+        }
+        else {
+            URL = Common.GetActionURL(Action: "GetByPaginate") + "?keyword=\(keyword)&categoryID=&activate=true&take=\(perPage)&skip=\(skip)";
+        }
         
         // GET Post
-        Alamofire.request(URL).responseJSON { (response:DataResponse<Any>) in
+        Alamofire.request(URL.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!).responseJSON { (response:DataResponse<Any>) in
             
             switch(response.result) {
             case .success(_):
@@ -151,39 +229,39 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     // set total
                     self.totalItem = JsonData["Total"].intValue;
                     
-                    // fetch all posts in this
-                    for (index, dict) in JsonData["Data"]
-                    {
-                        var thisPost = Post(ID: dict["ID"].intValue,
-                                            CategoryID: dict["CategoryID"].intValue,
-                                            Title: dict["Title"].stringValue,
-                                            Content: dict["Content"].stringValue,
-                                            Phone: dict["Phone"].stringValue,
-                                            Address: dict["Address"].stringValue,
-                                            Latt: dict["Latt"].doubleValue,
-                                            Long: dict["Long"].doubleValue,
-                                            CreatedDate: Common.getDate(dateString: dict["CreatedDate"].stringValue),
-                                            CreatedBy: dict["CreatedBy"].stringValue,
-                                            Activate: dict["Activate"].boolValue,
-                                            Category: nil,
-                                            Comments: nil,
-                                            Images: [Image]());
-                        
-                        // Lay ra 1 tam hinh duy nhat
-                        for (i2, d2) in dict["Images"] {
-                            thisPost.Images.append(Image(ID: d2["ID"].intValue, PostID: d2["PostID"].intValue, Path: d2["Path"].stringValue))
-                            break;
+                    if (self.totalItem > 0) {
+                        // fetch all posts in this
+                        for (index, dict) in JsonData["Data"]
+                        {
+                            var thisPost = Post(ID: dict["ID"].intValue,
+                                                CategoryID: dict["CategoryID"].intValue,
+                                                Title: dict["Title"].stringValue,
+                                                Content: dict["Content"].stringValue,
+                                                Phone: dict["Phone"].stringValue,
+                                                Address: dict["Address"].stringValue,
+                                                Latt: dict["Latt"].doubleValue,
+                                                Long: dict["Long"].doubleValue,
+                                                CreatedDate: Common.getDate(dateString: dict["CreatedDate"].stringValue),
+                                                CreatedBy: dict["CreatedBy"].stringValue,
+                                                Activate: dict["Activate"].boolValue,
+                                                Category: Category(ID: dict["Category"]["ID"].intValue, Name: dict["Category"]["Name"].stringValue),
+                                                Comments: nil,
+                                                Images: [Image]());
+                            
+                            // Lay ra 1 tam hinh duy nhat
+                            for (i2, d2) in dict["Images"] {
+                                thisPost.Images.append(Image(ID: d2["ID"].intValue, PostID: d2["PostID"].intValue, Path: d2["Path"].stringValue))
+                                break;
+                            }
+                            
+                            // add to array
+                            self.Posts.append(thisPost);
                         }
-                        
-                        // add to array
-                        self.Posts.append(thisPost);
                     }
                     
-                    // if have new posts
-                    if (self.Posts.count > 0)
-                    {
-                        self.tbPost.reloadData();
-                    }
+                    // need to reload before see it
+                    self.tbPost.reloadData();
+                    self.tbPost.alpha = 1;
                 }
                 break
                 
@@ -247,7 +325,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     {
         var items = [String]();
         
-        items.append("Trang chủ"); // item dau tien
         for item in Categories {
             items.append(item.Name);
         }
@@ -260,14 +337,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let titleView = TitleView(navigationController: navigationController!, title: "Nhóm 6 Estate", items: items);
         titleView?.action = { [weak self] index in
             let cate = self?.Categories[index];
-            print("Selected:\(cate?.Name)")
+            
             if (cate?.ID == 0)
             {
-                
+                self?.nowCategory = nil
             }
             else {
                 // set category and reload data
+                self?.nowCategory = cate?.ID;
             }
+            
+            // get data
+            self?.Posts.removeAll(); // remove all post before search
+            self?.dataInit(keyword: "", categoryID: self?.nowCategory);
         }
         
         navigationItem.titleView = titleView
@@ -286,12 +368,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         loadingView.frame = CGRect(x: x, y: y, width: width, height: height)
         
         // Sets loading text
-        loadingLabel.textColor = .gray
+        loadingLabel.textColor = .black
         loadingLabel.textAlignment = .center
-        loadingLabel.text = "Loading..."
+        loadingLabel.text = "Đang tải..."
         loadingLabel.frame = CGRect(x: 0, y: 0, width: 140, height: 30)
         
         // Sets spinner
+        spinner.color = .black;
         spinner.activityIndicatorViewStyle = .gray
         spinner.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         spinner.startAnimating()
