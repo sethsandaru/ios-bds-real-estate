@@ -12,5 +12,7 @@ target 'BDSNhom6' do
   pod 'SwiftyJSON'
   pod 'ImageSlideshow', '~> 1.4'
   pod 'Alamofire', '~> 4.5'
+  pod 'Dropdowns'
+
 
 end

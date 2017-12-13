@@ -10,7 +10,7 @@ import UIKit
 import OpalImagePicker
 import ImageSlideshow
 
-class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate, UITextViewDelegate {
+class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     //MARK: Properties
     @IBOutlet weak var lblTitle: UITextField!
     @IBOutlet weak var lblName: UITextField!
@@ -20,6 +20,10 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
     @IBOutlet weak var stackMain: UIStackView!
     @IBOutlet weak var sliderIMG: ImageSlideshow!
     @IBOutlet weak var btnIMG: UIButton!
+    @IBOutlet weak var txtCategory: UITextField!
+    
+    var pickerCate : UIPickerView = UIPickerView();
+    var categoryID : Int = 0;
     
     //MARK: Image Picker Configuration
     let imagePicker = OpalImagePickerController()
@@ -55,6 +59,11 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
         sliderIMG.pageControl.pageIndicatorTintColor = UIColor.black
         sliderIMG.contentScaleMode = UIViewContentMode.scaleAspectFit
         sliderIMG.activityIndicator = DefaultActivityIndicator();
+        
+        // load picker category
+        pickerCate.delegate = self;
+        pickerCate.dataSource = self;
+        txtCategory.inputView = pickerCate;
         
         //sliderIMG.isHidden = true;
         
@@ -134,5 +143,25 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
                 print("Set hidden in order of \(order) with bool: \(isHidden)")
             }
         })
+    }
+    
+    let data = ["", "ABC", "XYZ", "CCC"];
+    
+    //MARK: Picker solving
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return data.count;
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1;
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return data[row];
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        categoryID = row;
+        txtCategory.text = data[row];
     }
 }

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class CategoryTableViewController: UITableViewController {
     var Categories : [Category] = [Category]();
@@ -50,14 +52,17 @@ class CategoryTableViewController: UITableViewController {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
 
-    
+    /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
-    
+    */
 
     /*
     // Override to support editing the table view.
@@ -99,11 +104,10 @@ class CategoryTableViewController: UITableViewController {
     //MARK: Data init
     private func dataInit()
     {
-        let cate1 = Category.init(id: 1, name: "Nhà bán");
-        let cate2 = Category.init(id: 2, name: "Căn hộ bán");
-        let cate3 = Category.init(id: 3, name: "Đất bán");
-        
-        Categories += [cate1, cate2, cate3];
+        if (Categories.count > 0)
+        {
+            self.tableView.reloadData();
+        }
     }
 
 }

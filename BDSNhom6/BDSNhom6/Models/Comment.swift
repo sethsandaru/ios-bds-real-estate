@@ -8,18 +8,12 @@
 
 import UIKit
 
-class Comment {
-    var id : Int;
-    var name : String;
-    var email : String;
-    var comment : String;
-    var createdDate : Date;
+struct Comment {
+    var ID : Int;
+    var PostID : String;
+    var Name : String;
+    var Message : String;
+    var CreatedDate : Date;
     
-    init(id : Int, name : String, email : String, comment : String, createdDate : Date) {
-        self.id = id;
-        self.name = name;
-        self.comment = comment;
-        self.email = email;
-        self.createdDate = createdDate;
-    }
+    var Post : Post;
 }

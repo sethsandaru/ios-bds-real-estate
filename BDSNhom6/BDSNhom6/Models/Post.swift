@@ -8,29 +8,23 @@
 
 import UIKit
 
-class Post
+struct Post
 {
-    var id : Int;
-    var title : String;
-    var content : String;
-    var createdDate : Date;
-    var createdBy : String;
-    var activate : Bool;
-    var images : [UIImage];
+    var ID : Int;
+    var CategoryID : Int;
+
+    var Title : String;
+    var Content : String;
+    var Phone : String;
+    var Address : String;
+    var Latt : Double;
+    var Long : Double;
+    var CreatedDate : Date;
+    var CreatedBy : String;
+    var Activate : Bool;
     
-    init?(id : Int, title : String, content : String, createdDate : Date, createdBy : String, activate : Bool, images : [UIImage]) {
-        
-        if (images.count <= 0)
-        {
-            return nil;
-        }
-        
-        self.id = id;
-        self.title = title;
-        self.content = content;
-        self.createdBy = createdBy;
-        self.createdDate = createdDate;
-        self.activate = activate;
-        self.images = images;
-    }
+    var Category : Category?;
+    var Comments : [Comment]?;
+    var Images : [Image];
+    
 }
