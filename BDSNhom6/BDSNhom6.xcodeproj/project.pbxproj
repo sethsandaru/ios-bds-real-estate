@@ -13,14 +13,14 @@
 		551C4C911FC5D291006C378D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 551C4C901FC5D291006C378D /* Assets.xcassets */; };
 		551C4C941FC5D291006C378D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 551C4C921FC5D291006C378D /* LaunchScreen.storyboard */; };
 		551C4C9F1FC5D291006C378D /* BDSNhom6Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551C4C9E1FC5D291006C378D /* BDSNhom6Tests.swift */; };
+		551FE95C1FE2F9B9007CDC11 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 551FE95B1FE2F9AF007CDC11 /* MapKit.framework */; };
+		551FE95E1FE2FA2A007CDC11 /* NewPostMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551FE95D1FE2FA2A007CDC11 /* NewPostMapViewController.swift */; };
 		5531E0D01FD3300300D76EF4 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5531E0CF1FD3300300D76EF4 /* PostTableViewCell.swift */; };
 		5531E0D41FD3302F00D76EF4 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5531E0D31FD3302F00D76EF4 /* Post.swift */; };
 		554682D71FE01A29003AEA19 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554682D61FE01A29003AEA19 /* Common.swift */; };
 		554682D91FE02902003AEA19 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554682D81FE02902003AEA19 /* Image.swift */; };
 		554682DB1FE02C64003AEA19 /* PagingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554682DA1FE02C64003AEA19 /* PagingResult.swift */; };
 		5561977A1FD412ED0020B04D /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556197791FD412ED0020B04D /* Comment.swift */; };
-		5579B48E1FD1DBC30043A2FD /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579B48D1FD1DBC30043A2FD /* CategoryTableViewController.swift */; };
-		5579B4901FD1DC040043A2FD /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579B48F1FD1DC040043A2FD /* CategoryTableViewCell.swift */; };
 		5579B4921FD1DD260043A2FD /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579B4911FD1DD260043A2FD /* Category.swift */; };
 		55A5DACB1FD96C9C00192CE2 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A5DACA1FD96C9C00192CE2 /* NewPostViewController.swift */; };
 		55A5DACD1FD9A18700192CE2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A5DACC1FD9A18700192CE2 /* HomeViewController.swift */; };
@@ -48,14 +48,14 @@
 		551C4C9A1FC5D291006C378D /* BDSNhom6Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BDSNhom6Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		551C4C9E1FC5D291006C378D /* BDSNhom6Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BDSNhom6Tests.swift; sourceTree = "<group>"; };
 		551C4CA01FC5D291006C378D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		551FE95B1FE2F9AF007CDC11 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		551FE95D1FE2FA2A007CDC11 /* NewPostMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostMapViewController.swift; sourceTree = "<group>"; };
 		5531E0CF1FD3300300D76EF4 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		5531E0D31FD3302F00D76EF4 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		554682D61FE01A29003AEA19 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		554682D81FE02902003AEA19 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		554682DA1FE02C64003AEA19 /* PagingResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagingResult.swift; sourceTree = "<group>"; };
 		556197791FD412ED0020B04D /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
-		5579B48D1FD1DBC30043A2FD /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
-		5579B48F1FD1DC040043A2FD /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		5579B4911FD1DD260043A2FD /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		55A5DACA1FD96C9C00192CE2 /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		55A5DACC1FD9A18700192CE2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				551FE95C1FE2F9B9007CDC11 /* MapKit.framework in Frameworks */,
 				2AEA1B912AAABCC4F5DC83DE /* Pods_BDSNhom6.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -84,6 +85,7 @@
 		52194FFBB2B2A3E195ACA498 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				551FE95B1FE2F9AF007CDC11 /* MapKit.framework */,
 				A88AF6AE3B44824FF052B666 /* Pods_BDSNhom6.framework */,
 			);
 			name = Frameworks;
@@ -92,9 +94,9 @@
 		5504B2331FD59D7100A4C81D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5579B48D1FD1DBC30043A2FD /* CategoryTableViewController.swift */,
 				55A5DACA1FD96C9C00192CE2 /* NewPostViewController.swift */,
 				55A5DACC1FD9A18700192CE2 /* HomeViewController.swift */,
+				551FE95D1FE2FA2A007CDC11 /* NewPostMapViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -102,7 +104,6 @@
 		5504B2341FD59D8E00A4C81D /* ViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				5579B48F1FD1DC040043A2FD /* CategoryTableViewCell.swift */,
 				5531E0CF1FD3300300D76EF4 /* PostTableViewCell.swift */,
 			);
 			path = ViewCells;
@@ -237,6 +238,11 @@
 						CreatedOnToolsVersion = 8.3.3;
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					551C4C991FC5D291006C378D = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -354,13 +360,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				554682D91FE02902003AEA19 /* Image.swift in Sources */,
+				551FE95E1FE2FA2A007CDC11 /* NewPostMapViewController.swift in Sources */,
 				5579B4921FD1DD260043A2FD /* Category.swift in Sources */,
 				551C4C8A1FC5D291006C378D /* AppDelegate.swift in Sources */,
 				5531E0D41FD3302F00D76EF4 /* Post.swift in Sources */,
 				554682DB1FE02C64003AEA19 /* PagingResult.swift in Sources */,
 				554682D71FE01A29003AEA19 /* Common.swift in Sources */,
-				5579B48E1FD1DBC30043A2FD /* CategoryTableViewController.swift in Sources */,
-				5579B4901FD1DC040043A2FD /* CategoryTableViewCell.swift in Sources */,
 				55A5DACD1FD9A18700192CE2 /* HomeViewController.swift in Sources */,
 				5561977A1FD412ED0020B04D /* Comment.swift in Sources */,
 				5531E0D01FD3300300D76EF4 /* PostTableViewCell.swift in Sources */,

@@ -21,7 +21,9 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
     @IBOutlet weak var sliderIMG: ImageSlideshow!
     @IBOutlet weak var btnIMG: UIButton!
     @IBOutlet weak var txtCategory: UITextField!
+    @IBOutlet weak var btnMap: UIButton!
     
+    //MAKR: Configurations
     var pickerCate : UIPickerView = UIPickerView();
     var categoryID : Int = 0;
     
@@ -46,6 +48,7 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
         
         // config button radius
         btnIMG.layer.cornerRadius = 5.0;
+        btnMap.layer.cornerRadius = 5.0;
         
         
         // image picker settings
