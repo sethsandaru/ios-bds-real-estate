@@ -92,7 +92,7 @@
         <!--Đăng bài mới-->
         <scene sceneID="Sgg-Ho-NwD">
             <objects>
-                <viewController id="2jf-sn-Nzw" customClass="NewPostViewController" customModule="BDSNhom6" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewPostViewController" id="2jf-sn-Nzw" customClass="NewPostViewController" customModule="BDSNhom6" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tZf-yB-Q0S"/>
                         <viewControllerLayoutGuide type="bottom" id="0xq-fS-XPM"/>
@@ -254,13 +254,20 @@
                                 <action selector="onCancelClick:" destination="gvk-bO-8FK" id="Nmz-GH-ffM"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="wIz-AI-FNs"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="wIz-AI-FNs">
+                            <connections>
+                                <segue destination="5m3-RH-7uo" kind="unwind" identifier="unWindMapSelected" unwindAction="unWindMapSelectedWithSender:" id="vbV-BN-uov"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="btnDone" destination="wIz-AI-FNs" id="zUi-2r-Jny"/>
                         <outlet property="mapView" destination="Ph2-bo-cFr" id="tf8-uq-Kj4"/>
+                        <outlet property="txtSearch" destination="yPx-VA-fft" id="FA2-je-kO9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wyq-Pu-OvB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="5m3-RH-7uo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1261.5999999999999" y="1844.5277361319343"/>
         </scene>
@@ -435,18 +442,19 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ULj-4l-FiY">
                             <connections>
-                                <segue destination="2jf-sn-Nzw" kind="show" id="5JQ-UG-Vnz"/>
+                                <action selector="menuAddClick:" destination="CFF-SW-k2L" id="Vku-4u-DEh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tbPost" destination="zq1-Ff-UA2" id="2PE-HT-Afe"/>
                         <outlet property="txtSearch" destination="hJY-K0-TjV" id="jVk-nt-CAT"/>
+                        <segue destination="2jf-sn-Nzw" kind="show" identifier="segueGoToAdd" id="PaV-jG-lnS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uol-Xf-zNh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1079.2" y="1073.6131934032985"/>
+            <point key="canvasLocation" x="-1090" y="1074"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QSX-GO-xSQ">

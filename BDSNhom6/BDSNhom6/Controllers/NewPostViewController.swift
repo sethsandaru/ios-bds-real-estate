@@ -9,6 +9,8 @@
 import UIKit
 import OpalImagePicker
 import ImageSlideshow
+import Alamofire
+import SwiftyJSON
 
 class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     //MARK: Properties
@@ -26,6 +28,10 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
     //MAKR: Configurations
     var pickerCate : UIPickerView = UIPickerView();
     var categoryID : Int = 0;
+    var latt : Double = 0;
+    var long : Double = 0;
+    var Categories : [Category] = [Category]();
+    var Images : [Image] = [Image]();
     
     //MARK: Image Picker Configuration
     let imagePicker = OpalImagePickerController()
@@ -100,6 +106,9 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
         for img in images {
             let src = ImageSource(image: img);
             imgSource.append(src);
+            
+            // add source
+            Images.append(Image(ID: 0, PostID: 0, Path: Common.IMGToBase64(img: img)));
         }
         
         sliderIMG.setImageInputs(imgSource);
@@ -131,28 +140,92 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
     }
     
     //MARK: Save changes
-    
     @IBAction func menuSave(_ sender: UIBarButtonItem) {
-        txtPhone.isHidden = !txtPhone.isHidden;
-        print("isHidden:\(txtPhone.isHidden)")
-    }
-    
-    //MARK: Common functions
-    func stackViewUpdateSetHidden(order : Int, isHidden : Bool)
-    {
-        UIView.animate(withDuration: 0.25, animations: { () -> Void in
-            DispatchQueue.main.async {  // UI updates on the main thread
-                self.stackMain.arrangedSubviews[order].isHidden = isHidden
-                print("Set hidden in order of \(order) with bool: \(isHidden)")
+        // check du lieu
+        let title = lblTitle.text;
+        if title?.isEmpty == true
+        {
+            present(Common.Notification(title: "Lỗi", mess: "Xin hãy nhập tiêu đề", okBtn: "Ok"), animated: true, completion: nil)
+            return;
+        }
+        
+        let content = txtContent.text;
+        if content?.isEmpty == true
+        {
+            present(Common.Notification(title: "Lỗi", mess: "Xin hãy nhập nội dung bài viết", okBtn: "Ok"), animated: true, completion: nil)
+            return;
+        }
+        
+        let name = lblName.text;
+        if name?.isEmpty == true
+        {
+            present(Common.Notification(title: "Lỗi", mess: "Xin hãy nhập tên của bạn", okBtn: "Ok"), animated: true, completion: nil)
+            return;
+        }
+        
+        let address = txtAddress.text;
+        if address?.isEmpty == true
+        {
+            present(Common.Notification(title: "Lỗi", mess: "Xin hãy nhập địa chỉ", okBtn: "Ok"), animated: true, completion: nil)
+            return;
+        }
+        
+        let phone = txtPhone.text;
+        if phone?.isEmpty == true
+        {
+            present(Common.Notification(title: "Lỗi", mess: "Xin hãy nhập số điện thoại của bạn", okBtn: "Ok"), animated: true, completion: nil)
+            return;
+        }
+        
+        if categoryID == 0 {
+            present(Common.Notification(title: "Lỗi", mess: "Xin hãy chọn danh mục", okBtn: "Ok"), animated: true, completion: nil)
+            return;
+        }
+        
+        if sliderIMG.images.count <= 0 {
+            present(Common.Notification(title: "Lỗi", mess: "Xin hãy chọn ít nhất 1 tấm hình", okBtn: "Ok"), animated: true, completion: nil)
+            return;
+        }
+        
+        // new object
+        var newPost = Post(ID: 0, CategoryID: categoryID, Title: title!, Content: content!, Phone: phone!, Address: address!, Latt: latt, Long: long, CreatedDate: Date(), CreatedBy: name!, Activate: false, Category: nil, Comments: nil, Images: Images);
+        
+        // set controller and get URL
+        Common.SetController(controller: .Post);
+        let URL = Common.GetActionURL(Action: "AddOrUpdate");
+        
+        // send request
+        Alamofire.request(URL, method: .post, parameters: newPost.dictionaryParams, encoding: JSONEncoding.default, headers: nil).responseJSON { (response:DataResponse<Any>) in
+            
+            switch(response.result) {
+            case .success(_):
+                if response.result.value != nil{
+                    let result = JSON(response.result.value);
+                    
+                    if result.intValue > 0 {
+                        // success
+                        self.present(Common.Notification(title: "Thành công", mess: "Đã đăng bài thành công. Sẽ có kiểm duyệt viên xét duyệt bài của bạn trong giây lát! Xin cám ơn!", okBtn: "Ok"), animated: true, completion: nil);
+                    }
+                    else {
+                        // failed
+                        self.present(Common.Notification(title: "Thất bại", mess: "Đăng bài không thành công! Xin hãy thử lại!", okBtn: "Ok"), animated: true, completion: nil);
+                    }
+                }
+                break
+                
+            case .failure(_):
+                print(response.result.error)
+                self.present(Common.Notification(title: "Thất bại", mess: "Không thể đăng bài, xin hãy thử lại sau!", okBtn: "Ok"), animated: true, completion: nil);
+                break
+                
             }
-        })
+        }
     }
     
-    let data = ["", "ABC", "XYZ", "CCC"];
     
-    //MARK: Picker solving
+    //MARK: Picker category solving
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return data.count;
+        return Categories.count;
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -160,11 +233,33 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return data[row];
+        return Categories[row].Name;
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        categoryID = row;
-        txtCategory.text = data[row];
+        categoryID = Categories[row].ID;
+        txtCategory.text = Categories[row].Name;
+    }
+    
+    //MARK: Solving unwind
+    @IBAction func unWindMapSelected(sender : UIStoryboardSegue)
+    {
+        if let source = sender.source as? NewPostMapViewController, let coord = source.coord {
+            // set coord
+            self.latt = Double(coord.latitude);
+            self.long = Double(coord.longitude);
+            
+            print("Chon map thanh cong: \(latt) - \(long)");
+            
+            // notify
+            //let alert = Common.Notification(title: "Thành công", mess: "Bạn đã chọn địa điểm thành công trên map, bạn có thể chọn lại nếu muốn!", okBtn: "Tiếp tục đăng bài")
+            //self.present(alert, animated: true, completion: nil)
+            
+            let alert = UIAlertView()
+            alert.title = "Thành công"
+            alert.message = "Bạn đã chọn địa điểm thành công trên map, bạn có thể chọn lại nếu muốn!"
+            alert.addButton(withTitle: "Tiếp tục đăng bài")
+            alert.show()
+        }
     }
 }

@@ -28,6 +28,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var keyword : String = "";
     var nowCategory : Int? = nil;
     var isCategorying : Bool = true;
+    private let segueAddID : String = "NewPostViewController";
     
     //MARK: Loading config
     /// View which contains the loading text and the spinner
@@ -66,8 +67,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         // add trang chu
         self.Categories.append(Category(ID: 0, Name: "Trang chủ"));
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -306,6 +305,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     }
                     
                     print("Get categories is done, total: \(self.Categories.count)");
+                    
+                    // afterward action
+                    self.isCategorying = false;
                     self.initNavigation();
                 }
                 break
@@ -355,6 +357,26 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         navigationItem.titleView = titleView
     }
     
+    
+    @IBAction func menuAddClick(_ sender: UIBarButtonItem) {
+        if (isCategorying == true)
+        {
+            return;
+        }
+        
+        guard let viewController : NewPostViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: segueAddID) as? NewPostViewController else {
+            return;
+        }
+        
+        // set data
+        viewController.Categories = self.Categories;
+
+        // send to navigation
+        self.navigationController?.pushViewController(viewController, animated: true);
+        
+        //performSegue(withIdentifier: segueAddID, sender: sender)
+
+    }
     
     //MARK: Loading indicators
     // Set the activity indicator into the main view

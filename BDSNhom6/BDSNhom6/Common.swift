@@ -43,16 +43,15 @@ class Common
     }
 
     //MARK: Alert dialog
-    public static func EndApp(mess : String?)
+    public static func Notification(title : String, mess : String, okBtn : String) -> UIAlertController
     {
-        if mess != nil {
-            fatalError(mess!);
-        }
-        else {
-            fatalError("App has been stopped");
-        }
+        let alert = UIAlertController(title: title, message: mess, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: okBtn, style: UIAlertActionStyle.default, handler: nil))
+        
+        return alert
     }
     
+    //MARK: Parse Date from String
     public static func getDate(dateString:String) -> Date {
         
         

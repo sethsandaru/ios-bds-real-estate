@@ -27,4 +27,28 @@ struct Post
     var Comments : [Comment]?;
     var Images : [Image];
     
+    
+    // parse json parameter
+    var dictionaryParams : [String : Any?]
+    {
+        return [
+            "ID": ID,
+            "CategoryID": CategoryID,
+            
+            "Title": Title,
+            "Content": Content,
+            "Phone": Phone,
+            "Address": Address,
+            "Latt": Latt,
+            "Long": Long,
+            "CreatedDate": CreatedDate,
+            "CreatedBy": CreatedBy,
+            "Activate": Activate,
+            
+            "Category": Category,
+            "Comments": Comments,
+            "Images": Images,
+        ];
+    }
+    
 }

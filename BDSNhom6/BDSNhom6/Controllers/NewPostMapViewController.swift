@@ -10,12 +10,15 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class NewPostMapViewController: UIViewController, UIGestureRecognizerDelegate {
+class NewPostMapViewController: UIViewController, UIGestureRecognizerDelegate, UISearchBarDelegate {
     //MARK: Properties
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var btnDone: UIBarButtonItem!
+    @IBOutlet weak var txtSearch: UISearchBar!
     
     //MARK: Configurations
     let locationManager = CLLocationManager()
+    var coord : CLLocationCoordinate2D? = nil;
     
     
     override func viewDidLoad() {
@@ -28,6 +31,9 @@ class NewPostMapViewController: UIViewController, UIGestureRecognizerDelegate {
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         gestureRecognizer.delegate = self
         mapView.addGestureRecognizer(gestureRecognizer)
+        
+        // searchbar delegate
+        txtSearch.delegate = self
         
         // Do any additional setup after loading the view.
     }
@@ -73,6 +79,8 @@ class NewPostMapViewController: UIViewController, UIGestureRecognizerDelegate {
         let location = gestureReconizer.location(in: mapView)
         let coordinate = mapView.convert(location,toCoordinateFrom: mapView)
         
+        coord = coordinate; // set current coord record
+        
         // Add annotation:
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
@@ -82,5 +90,33 @@ class NewPostMapViewController: UIViewController, UIGestureRecognizerDelegate {
     //MARK: On Cancel Select Map
     @IBAction func onCancelClick(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    //MARK: Preparing data before go back
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender);
+        
+        guard let btn = sender as? UIBarButtonItem, btn === btnDone else {
+            print("BtnDone not pressed");
+            return;
+        }
+        
+        
+        // ok now we can return safely
+    }
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        
+        // check before done
+        if (identifier == "unWindMapSelected")
+        {
+            if coord == nil {
+                let alert = Common.Notification(title: "Lỗi", mess: "Xin hãy nhấp chọn địa điểm của bạn!", okBtn: "Tôi biết rồi")
+                self.present(alert, animated: true, completion: nil)
+                return false;
+            }
+        }
+        
+        return true;
     }
 }
