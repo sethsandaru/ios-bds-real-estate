@@ -14,6 +14,7 @@ import SwiftyJSON
 class Common
 {
     public static let URLApi : String = "http://nhom6bdsapi.sethphat.com/api/";
+    //public static let URLApi : String = "http://192.168.1.90:62549/api/";
     public static var NowController : Controller = .Post;
     
     //MARK: UIImage to Base64 STR
