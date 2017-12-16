@@ -24,6 +24,7 @@
 		5579B4921FD1DD260043A2FD /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579B4911FD1DD260043A2FD /* Category.swift */; };
 		55A5DACB1FD96C9C00192CE2 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A5DACA1FD96C9C00192CE2 /* NewPostViewController.swift */; };
 		55A5DACD1FD9A18700192CE2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A5DACC1FD9A18700192CE2 /* HomeViewController.swift */; };
+		8464D7B51FE52B02000C563A /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8464D7B41FE52B02000C563A /* CommentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		5579B4911FD1DD260043A2FD /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		55A5DACA1FD96C9C00192CE2 /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		55A5DACC1FD9A18700192CE2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		8464D7B41FE52B02000C563A /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		A88AF6AE3B44824FF052B666 /* Pods_BDSNhom6.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BDSNhom6.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -97,6 +99,7 @@
 				55A5DACA1FD96C9C00192CE2 /* NewPostViewController.swift */,
 				55A5DACC1FD9A18700192CE2 /* HomeViewController.swift */,
 				551FE95D1FE2FA2A007CDC11 /* NewPostMapViewController.swift */,
+				8464D7B41FE52B02000C563A /* CommentViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				554682DB1FE02C64003AEA19 /* PagingResult.swift in Sources */,
 				554682D71FE01A29003AEA19 /* Common.swift in Sources */,
 				55A5DACD1FD9A18700192CE2 /* HomeViewController.swift in Sources */,
+				8464D7B51FE52B02000C563A /* CommentViewController.swift in Sources */,
 				5561977A1FD412ED0020B04D /* Comment.swift in Sources */,
 				5531E0D01FD3300300D76EF4 /* PostTableViewCell.swift in Sources */,
 				55A5DACB1FD96C9C00192CE2 /* NewPostViewController.swift in Sources */,
