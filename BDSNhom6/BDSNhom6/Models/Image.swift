@@ -13,4 +13,15 @@ struct Image
     var ID : Int;
     var PostID : Int;
     var Path : String;
+    
+    
+    // object => json parameter helper
+    var dictionaryParams : [String : Any?]
+    {
+        return [
+            "ID": ID,
+            "PostID": PostID,
+            "Path": Path,
+        ];
+    }
 }
