@@ -202,6 +202,8 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
                 if response.result.value != nil{
                     let result = JSON(response.result.value);
                     
+                    print("Result posting: \(result) - \(result.intValue)")
+                    
                     if result.intValue > 0 {
                         // success
                         self.present(Common.Notification(title: "Thành công", mess: "Đã đăng bài thành công. Sẽ có kiểm duyệt viên xét duyệt bài của bạn trong giây lát! Xin cám ơn!", okBtn: "Ok"), animated: true, completion: nil);

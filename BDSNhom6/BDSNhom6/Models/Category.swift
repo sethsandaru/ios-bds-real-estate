@@ -13,4 +13,12 @@ struct Category
     var ID : Int;
     var Name : String;
     
+    
+    var dictionaryParams : [String : Any?]
+    {
+        return [
+            "ID": ID,
+            "Name": Name
+        ];
+    }
 }

@@ -31,6 +31,13 @@ struct Post
     // parse json parameter
     var dictionaryParams : [String : Any?]
     {
+        // solving images
+        var imgs : [[String : Any?]] = [[String : Any?]]();
+        for img in Images
+        {
+            imgs.append(img.dictionaryParams)
+        }
+        
         return [
             "ID": ID,
             "CategoryID": CategoryID,
@@ -41,13 +48,13 @@ struct Post
             "Address": Address,
             "Latt": Latt,
             "Long": Long,
-            "CreatedDate": CreatedDate,
+            "CreatedDate": Common.GetJSONDate(date: CreatedDate),
             "CreatedBy": CreatedBy,
             "Activate": Activate,
             
-            "Category": Category,
-            "Comments": Comments,
-            "Images": Images,
+            "Category": Category?.dictionaryParams,
+            "Comments": "null",
+            "Images": imgs,
         ];
     }
     

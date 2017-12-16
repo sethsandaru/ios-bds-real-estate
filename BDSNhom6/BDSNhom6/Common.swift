@@ -80,6 +80,14 @@ class Common
         return date!;
         
     }
+    
+    //MARK: Parse Date to JSON
+    public static func GetJSONDate(date : Date) -> String {
+        let dateFormatter = DateFormatter();
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        
+        return dateFormatter.string(from: date);
+    }
 
 }
 
