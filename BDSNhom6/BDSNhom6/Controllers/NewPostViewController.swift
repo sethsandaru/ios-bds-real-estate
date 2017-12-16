@@ -11,6 +11,8 @@ import OpalImagePicker
 import ImageSlideshow
 import Alamofire
 import SwiftyJSON
+import FirebaseCore
+import FirebaseStorage
 
 class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     //MARK: Properties
@@ -24,6 +26,7 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
     @IBOutlet weak var btnIMG: UIButton!
     @IBOutlet weak var txtCategory: UITextField!
     @IBOutlet weak var btnMap: UIButton!
+    @IBOutlet weak var progressBar: UIProgressView!
     
     //MAKR: Configurations
     var pickerCate : UIPickerView = UIPickerView();
@@ -32,6 +35,7 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
     var long : Double = 0;
     var Categories : [Category] = [Category]();
     var Images : [Image] = [Image]();
+    var progressBarRatio : Float = 0;
     
     //MARK: Image Picker Configuration
     let imagePicker = OpalImagePickerController()
@@ -39,10 +43,14 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
     
     //MARK: Other config
     let placeHolderContent = "Nội dung bài viết";
+    private let dateFormat : DateFormatter = DateFormatter(); // to format date
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // date format
+        dateFormat.dateFormat = "dd_MM_yyyy_HH_mm_ss";
         
         // delegate and config txtContent
         txtContent.delegate = self;
@@ -68,6 +76,9 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
         sliderIMG.pageControl.pageIndicatorTintColor = UIColor.black
         sliderIMG.contentScaleMode = UIViewContentMode.scaleAspectFit
         sliderIMG.activityIndicator = DefaultActivityIndicator();
+        
+        // data config
+        Categories.removeFirst(); // Remove "Trang Chu"
         
         // load picker category
         pickerCate.delegate = self;
@@ -101,14 +112,25 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
     }
     
     func imagePicker(_ picker: OpalImagePickerController, didFinishPickingImages images: [UIImage]) {
+        // get source
         var imgSource : [ImageSource] = [ImageSource]();
         
+        // config progressbar
+        progressBar.isHidden = false;
+        progressBar.setProgress(0, animated: false);
+        self.progressBarRatio = Float(1) / Float(images.count); // set ratio per finished
+        
+        Images.removeAll();
+        // add and show to slide
         for img in images {
             let src = ImageSource(image: img);
             imgSource.append(src);
             
+            // upload to firebase
+            uploadImage(image: img);
+            
             // add source
-            Images.append(Image(ID: 0, PostID: 0, Path: Common.IMGToBase64(img: img)));
+            //Images.append(Image(ID: 0, PostID: 0, Path: Common.IMGToBase64(img: img)));
         }
         
         sliderIMG.setImageInputs(imgSource);
@@ -121,6 +143,7 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
     func imagePickerDidCancel(_ picker: OpalImagePickerController) {
         //sliderIMG.isHidden = true;
         sliderIMG.setImageInputs([]);
+        progressBar.isHidden = true;
         presentedViewController?.dismiss(animated: true, completion: nil)
     }
     
@@ -187,6 +210,11 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
             return;
         }
         
+        if progressBar.progress < 1.0 {
+            present(Common.Notification(title: "Lỗi", mess: "Xin hãy đợi quá trình upload hình hoàn tất!", okBtn: "Ok"), animated: true, completion: nil)
+            return;
+        }
+        
         // new object
         var newPost = Post(ID: 0, CategoryID: categoryID, Title: title!, Content: content!, Phone: phone!, Address: address!, Latt: latt, Long: long, CreatedDate: Date(), CreatedBy: name!, Activate: false, Category: nil, Comments: nil, Images: Images);
         
@@ -206,7 +234,16 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
                     
                     if result.intValue > 0 {
                         // success
-                        self.present(Common.Notification(title: "Thành công", mess: "Đã đăng bài thành công. Sẽ có kiểm duyệt viên xét duyệt bài của bạn trong giây lát! Xin cám ơn!", okBtn: "Ok"), animated: true, completion: nil);
+                        let alert = UIAlertController(title: "Thành công", message: "Bạn đã đăng bài viết thành công. Sẽ có kiểm duyệt viên xét duyệt bài của bạn trong thời gian ngắn. Xin cám ơn!", preferredStyle: UIAlertControllerStyle.alert)
+                        
+                        alert.addAction(UIAlertAction(title: "Quay về trang chủ", style: UIAlertActionStyle.destructive, handler: {
+                            action in
+                            
+                            // back to front page
+                            self.navigationController?.popViewController(animated: true);
+                        }));
+                        
+                        self.present(alert, animated: true, completion: nil)
                     }
                     else {
                         // failed
@@ -241,6 +278,8 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         categoryID = Categories[row].ID;
         txtCategory.text = Categories[row].Name;
+        txtCategory.resignFirstResponder();
+        pickerView.resignFirstResponder();
     }
     
     //MARK: Solving unwind
@@ -262,6 +301,37 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
             alert.message = "Bạn đã chọn địa điểm thành công trên map, bạn có thể chọn lại nếu muốn!"
             alert.addButton(withTitle: "Tiếp tục đăng bài")
             alert.show()
+        }
+    }
+    
+    //MARK: Firebase Upload Image
+    private func uploadImage(image: UIImage) {
+        // name
+        let nowDate = Date();
+        let randomName = Common.RandomString(length: 10);
+        
+        // preparing data
+        let imageData = UIImageJPEGRepresentation(image, 1.0)
+        
+        // declare upload
+        let uploadRef = Storage.storage().reference().child("Posts/\(dateFormat.string(from: nowDate))_\(randomName.MD5)_SethPhat.jpg")
+        
+        // upload now
+        uploadRef.putData(imageData!, metadata: nil) { metadata,
+            error in
+            if error == nil {
+                // tang progress
+                DispatchQueue.main.async { [unowned self] in
+                    self.progressBar.setProgress(self.progressBar.progress + self.progressBarRatio, animated: true);
+                }
+                
+                print("Upload hinh thanh cong: \(self.progressBar.progress) - Ratio: \(self.progressBarRatio)")
+
+                
+                // add to list img
+                self.Images.append(Image(ID: 0, PostID: 0, Path: (metadata?.downloadURL()?.absoluteString)!));
+            }
+            // ko thanh cong thi thui :D
         }
     }
 }

@@ -71,6 +71,40 @@ class NewPostMapViewController: UIViewController, UIGestureRecognizerDelegate, U
         }
     }
     
+    //MARK: Search address
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let address = txtSearch.text;
+        
+        if (address?.isEmpty == true) {
+            present(Common.Notification(title: "Lỗi", mess: "Xin hãy nhập địa chỉ", okBtn: "Ok"), animated: true, completion: nil);
+            return;
+        }
+        
+        // search address
+        let geoCoder = CLGeocoder()
+        geoCoder.geocodeAddressString(address!) { (placemarks, error) in
+            guard
+                let placemarks = placemarks,
+                let location = placemarks.first?.location
+                else {
+                    // handle no location found
+                    self.present(Common.Notification(title: "Lỗi", mess: "Không tìm thấy địa chỉ này", okBtn: "Ok"), animated: true, completion: nil);
+                    return
+            }
+            
+            // clear all anno before add new one
+            self.mapView.removeAnnotations(self.mapView.annotations);
+            
+            // Use your location
+            self.coord = location.coordinate;
+            
+            // add to map annotation
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = location.coordinate
+            self.mapView.addAnnotation(annotation)
+        }
+    }
+    
     //MARK: On Map Tap
     func handleTap(_ gestureReconizer: UITapGestureRecognizer) {
         // clear all anno before add new one

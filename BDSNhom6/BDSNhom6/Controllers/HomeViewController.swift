@@ -29,6 +29,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var nowCategory : Int? = nil;
     var isCategorying : Bool = true;
     private let segueAddID : String = "NewPostViewController";
+    private let appTitle : String = "Nhóm 6 Estate";
     
     //MARK: Loading config
     /// View which contains the loading text and the spinner
@@ -107,7 +108,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.lblTitle.text = row.Title;
         cell.lblName.text = row.CreatedBy;
         cell.lblContent.text = row.Content;
-        cell.imgFeature.image = Common.Base64ToIMG(str: row.Images[0].Path);
+        //cell.imgFeature.image = Common.Base64ToIMG(str: row.Images[0].Path);
+        cell.imgFeature.image(fromUrl: row.Images[0].Path)
         cell.lblDate.text = dateFormatter.string(from: row.CreatedDate);
         cell.lblCategory.text = "Loại: " + row.Category!.Name;
         
@@ -334,9 +336,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         //config background color rgba(46, 204, 113,1.0)
         Config.List.backgroundColor = UIColor(red: 46/255, green: 204/255, blue: 113/255, alpha: 1.0);
         Config.List.DefaultCell.Text.color = UIColor.white;
+        Config.ArrowButton.Text.color = UIColor.white;
 
         // set title view
-        let titleView = TitleView(navigationController: navigationController!, title: "Nhóm 6 Estate", items: items);
+        let titleView = TitleView(navigationController: navigationController!, title: appTitle, items: items);
+        
+        // action when choose category
         titleView?.action = { [weak self] index in
             let cate = self?.Categories[index];
             

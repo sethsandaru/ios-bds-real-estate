@@ -10,11 +10,17 @@ import Foundation
 import UIKit
 import Alamofire
 import SwiftyJSON
+import os
 
 class Common
 {
-    public static let URLApi : String = "http://nhom6bdsapi.sethphat.com/api/";
-    //public static let URLApi : String = "http://192.168.1.90:62549/api/";
+    // URL api
+    enum ApiURL : String {
+        case UrlLive = "http://nhom6bdsapi.sethphat.com/api/";
+        case UrlLocal = "http://192.168.1.90:62549/api/";
+    }
+    
+    public static let URLApi : ApiURL = .UrlLive;
     public static var NowController : Controller = .Post;
     
     //MARK: UIImage to Base64 STR
@@ -40,7 +46,7 @@ class Common
     //MARK: Get URL API
     public static func GetActionURL(Action : String) -> String
     {
-        return URLApi + NowController.rawValue + "/" + Action;
+        return URLApi.rawValue + NowController.rawValue + "/" + Action;
     }
 
     //MARK: Alert dialog
@@ -89,6 +95,37 @@ class Common
         
         return dateFormatter.string(from: date);
     }
+    
+    //MARK: Random String
+    public static func RandomString(length: Int) -> String {
+        
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let len = UInt32(letters.length)
+        
+        var randomString = ""
+        
+        for _ in 0 ..< length {
+            let rand = arc4random_uniform(len)
+            var nextChar = letters.character(at: Int(rand))
+            randomString += NSString(characters: &nextChar, length: 1) as String
+        }
+        
+        return randomString
+    }
+    
+    //MARK: Hash MD5
+    public static func MD5(string: String) -> Data {
+        let messageData = string.data(using:.utf8)!
+        var digestData = Data(count: Int(CC_MD5_DIGEST_LENGTH))
+        
+        _ = digestData.withUnsafeMutableBytes {digestBytes in
+            messageData.withUnsafeBytes {messageBytes in
+                CC_MD5(messageBytes, CC_LONG(messageData.count), digestBytes)
+            }
+        }
+        
+        return digestData
+    }
 
 }
 
@@ -100,20 +137,39 @@ enum Controller : String {
     case Upload = "Upload";
 }
 
-extension JSON {
-    public var date: Date? {
-        get {
-            if let str = self.string {
-                return JSON.jsonDateFormatter.date(from: str)
+//MARK: UIImageView load URL
+extension UIImageView {
+    public func image(fromUrl urlString: String) {
+        guard let url = URL(string: urlString) else {
+            os_log("Couldn't create URL from: ", urlString)
+            return
+        }
+        let theTask = URLSession.shared.dataTask(with: url) {
+            data, response, error in
+            if let response = data {
+                DispatchQueue.main.async {
+                    self.image = UIImage(data: response)
+                }
             }
-            return nil
+        }
+        theTask.resume()
+    }
+}
+
+//MARK: Extension to convert String => MD5
+extension String{
+    var MD5:String {
+        get{
+            let messageData = self.data(using:.utf8)!
+            var digestData = Data(count: Int(CC_MD5_DIGEST_LENGTH))
+            
+            _ = digestData.withUnsafeMutableBytes {digestBytes in
+                messageData.withUnsafeBytes {messageBytes in
+                    CC_MD5(messageBytes, CC_LONG(messageData.count), digestBytes)
+                }
+            }
+            
+            return digestData.map { String(format: "%02hhx", $0) }.joined()
         }
     }
-    
-    private static let jsonDateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
-        return dateFormatter
-    }()
 }
