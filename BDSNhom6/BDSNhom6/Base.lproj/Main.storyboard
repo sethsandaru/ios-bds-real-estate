@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -532,10 +533,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dxH-mr-hzn">
-                                <rect key="frame" x="16" y="64" width="343" height="583"/>
+                                <rect key="frame" x="16" y="64" width="343" height="553"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8lS-EY-bwH">
-                                        <rect key="frame" x="0.0" y="10" width="343" height="243"/>
+                                        <rect key="frame" x="0.0" y="10" width="343" height="305"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jnA-pf-uqs" userLabel="ImgSlider" customClass="ImageSlideshow" customModule="ImageSlideshow">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="200"/>
@@ -544,14 +545,26 @@
                                                     <constraint firstAttribute="height" constant="200" id="LLL-Ui-8iT"/>
                                                 </constraints>
                                             </view>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Nội dung bài viết" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="siJ-vg-82X">
-                                                <rect key="frame" x="0.0" y="210" width="343" height="33"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tiêu đề" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fwq-cc-Ksb">
+                                                <rect key="frame" x="0.0" y="210" width="343" height="24"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ngày đăng" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKM-Su-sUw">
+                                                <rect key="frame" x="0.0" y="244" width="343" height="18"/>
+                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Nội dung bài viết" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siJ-vg-82X">
+                                                <rect key="frame" x="0.0" y="272" width="343" height="33"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pzz-5J-1rH">
-                                                <rect key="frame" x="0.0" y="243" width="343" height="0.0"/>
+                                                <rect key="frame" x="0.0" y="305" width="343" height="0.0"/>
                                                 <color key="progressTintColor" red="0.1529411765" green="0.68235294120000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </progressView>
                                         </subviews>
@@ -565,18 +578,47 @@
                                     <constraint firstItem="8lS-EY-bwH" firstAttribute="width" secondItem="dxH-mr-hzn" secondAttribute="width" id="z1b-Mt-Hy3"/>
                                 </constraints>
                             </scrollView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r4K-ja-Qre">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tVS-Ci-Bc6">
+                                        <rect key="frame" x="0.0" y="0.0" width="124" height="50"/>
+                                        <state key="normal" title="Alo!" image="phoneIcon">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhs-u5-ZoE">
+                                        <rect key="frame" x="124" y="0.0" width="124" height="50"/>
+                                        <state key="normal" title="Vị trí" image="mapIcon">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Z0-19-XLy">
+                                        <rect key="frame" x="248" y="0.0" width="127" height="50"/>
+                                        <state key="normal" title="Bình luận" image="commentIcon">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="r4K-ja-Qre" firstAttribute="top" secondItem="dxH-mr-hzn" secondAttribute="bottom" id="2tx-zy-j38"/>
+                            <constraint firstItem="PiC-Mq-bBn" firstAttribute="top" secondItem="r4K-ja-Qre" secondAttribute="bottom" id="3by-jj-pSc"/>
                             <constraint firstItem="dxH-mr-hzn" firstAttribute="top" secondItem="yLL-im-Pek" secondAttribute="bottom" id="OA1-G4-SKA"/>
-                            <constraint firstItem="PiC-Mq-bBn" firstAttribute="top" secondItem="dxH-mr-hzn" secondAttribute="bottom" constant="20" id="PkP-XT-4DA"/>
+                            <constraint firstItem="PiC-Mq-bBn" firstAttribute="top" secondItem="dxH-mr-hzn" secondAttribute="bottom" constant="50" id="PkP-XT-4DA"/>
                             <constraint firstItem="dxH-mr-hzn" firstAttribute="trailing" secondItem="lK4-dx-Weg" secondAttribute="trailingMargin" id="U0P-UB-0Ko"/>
+                            <constraint firstItem="r4K-ja-Qre" firstAttribute="leading" secondItem="lK4-dx-Weg" secondAttribute="leading" id="XJd-RR-IoG"/>
+                            <constraint firstItem="rhs-u5-ZoE" firstAttribute="width" secondItem="lK4-dx-Weg" secondAttribute="width" multiplier="0.33" id="XcK-QM-ZrP"/>
                             <constraint firstItem="dxH-mr-hzn" firstAttribute="leading" secondItem="lK4-dx-Weg" secondAttribute="leadingMargin" id="gUm-qs-6kv"/>
+                            <constraint firstItem="tVS-Ci-Bc6" firstAttribute="width" secondItem="lK4-dx-Weg" secondAttribute="width" multiplier="0.33" id="oca-2b-iCh"/>
+                            <constraint firstAttribute="trailing" secondItem="r4K-ja-Qre" secondAttribute="trailing" id="pbf-7y-atA"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Thông tin bài viết" id="pes-sX-oQu">
                         <barButtonItem key="backBarButtonItem" title="Back" id="QfS-A3-lJg"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="bfc-R2-lRj">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="bfc-R2-lRj">
                             <connections>
                                 <action selector="menuSave:" destination="jF1-uZ-Jru" id="u3Y-RJ-czg"/>
                             </connections>
@@ -591,12 +633,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1zO-lt-MDi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-298" y="1074"/>
+            <point key="canvasLocation" x="-298.39999999999998" y="1073.6131934032985"/>
         </scene>
     </scenes>
     <resources>
+        <image name="commentIcon" width="24" height="24"/>
         <image name="defaultPost" width="200" height="100"/>
         <image name="defaultUser" width="128" height="128"/>
+        <image name="mapIcon" width="24" height="24"/>
         <image name="menuIcon" width="24" height="24"/>
+        <image name="phoneIcon" width="24" height="24"/>
     </resources>
 </document>
