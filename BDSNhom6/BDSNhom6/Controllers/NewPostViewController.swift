@@ -67,6 +67,16 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
         
         // image picker settings
         self.imagePicker.imagePickerDelegate = self;
+        imagePicker.maximumSelectionsAllowed = maxiumPick;
+        imagePicker.allowedMediaTypes = Set([.image])
+        imagePicker.navigationBar.tintColor = UIColor.white;
+        imagePicker.navigationBar.barTintColor = UIColor(hexString: "#27ae60");
+        imagePicker.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white];
+        let configuration = OpalImagePickerConfiguration()
+        configuration.maximumSelectionsAllowedMessage = NSLocalizedString("Bạn không thể chọn quá \(maxiumPick) hình!", comment: "")
+        configuration.navigationTitle = "Chọn hình ảnh";
+        imagePicker.configuration = configuration
+
         
         // slidershow settings
         sliderIMG.backgroundColor = UIColor.white

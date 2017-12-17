@@ -30,6 +30,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var nowCategory : Int? = nil;
     var isCategorying : Bool = true;
     private let segueAddID : String = "NewPostViewController";
+    private let seguePostID : String = "PostInformationViewController";
     private let appTitle : String = "Nhóm 6 Estate";
     
     //MARK: Loading config
@@ -122,9 +123,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     // Chuyển qua trang bài viết khi dc click
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         txtSearch.resignFirstResponder()
-        let alert = UIAlertController(title: "Thông báo", message: "Đã chọn item tại row thứ: \(indexPath.row)", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        
+        // check if get fail
+        guard let viewController : PostInformationViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: seguePostID) as? PostInformationViewController else {
+            return;
+        }
+        
+        // set data
+        viewController.post = Posts[indexPath.row];
+        
+        // send to navigation
+        self.navigationController?.pushViewController(viewController, animated: true);
     }
     
     // Load more khi tận cùng
@@ -254,7 +263,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                             // Lay ra 1 tam hinh duy nhat
                             for (i2, d2) in dict["Images"] {
                                 thisPost.Images.append(Image(ID: d2["ID"].intValue, PostID: d2["PostID"].intValue, Path: d2["Path"].stringValue))
-                                break;
                             }
                             
                             // add to array
@@ -336,7 +344,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         //config background color rgba(46, 204, 113,1.0)
-        Config.List.backgroundColor = UIColor(red: 46/255, green: 204/255, blue: 113/255, alpha: 1.0);
+        Config.List.backgroundColor = UIColor(hexString: "#3498db");
         Config.List.DefaultCell.Text.color = UIColor.white;
         Config.ArrowButton.Text.color = UIColor.white;
 
@@ -368,6 +376,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func menuAddClick(_ sender: UIBarButtonItem) {
         if (isCategorying == true)
         {
+            self.present(Common.Notification(title: "Lỗi", mess: "Đang lấy dữ liệu, xin vui lòng đợi...", okBtn: "Quay lại"), animated: true, completion: nil);
             return;
         }
         

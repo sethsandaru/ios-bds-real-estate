@@ -9,30 +9,33 @@
 import UIKit
 
 class CommentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    @IBOutlet weak var commentTable: UITableView!
+    //MARK: Properties
+    @IBOutlet weak var tbComment: UITableView!
+    
+    //MARK: Configurations
+    var Comments : [Comment] = [Comment]();
+    var PostID : Int = 0;
+    var Name : String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        guard PostID > 0 else {
+            print("PostID error");
+            // show error message
+            
+            // pop to frontpage
+            self.navigationController?.popViewController(animated: true);
+            return;
+        }
 
-        // Do any additional setup after loading the view.
-        commentTable.dataSource = self
-        commentTable.delegate = self
+        // set delegate
+        tbComment.dataSource = self
+        tbComment.delegate = self
+        
+        // load data
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath) as! CommentTableViewCell
-        cell.name.text = "Hello"
-        return cell
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -48,6 +51,31 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Pass the selected object to the new view controller.
     }
     */
+    
+    //MARK: Edit name
+    @IBAction func btnEditClick(_ sender: UIBarButtonItem) {
+        
+    }
+    
+    //MARK: TableView solving
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return Comments.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell", for: indexPath) as? CommentTableViewCell else {
+            fatalError("Error from Comment Table View Cell");
+        }
+        
+        // row item
+        let row = Comments[indexPath.row];
+        
+        return cell
+    }
     
     
 

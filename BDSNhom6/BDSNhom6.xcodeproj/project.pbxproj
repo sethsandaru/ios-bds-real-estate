@@ -24,6 +24,8 @@
 		5579B4921FD1DD260043A2FD /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579B4911FD1DD260043A2FD /* Category.swift */; };
 		55A5DACB1FD96C9C00192CE2 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A5DACA1FD96C9C00192CE2 /* NewPostViewController.swift */; };
 		55A5DACD1FD9A18700192CE2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A5DACC1FD9A18700192CE2 /* HomeViewController.swift */; };
+		55E31B271FE6A4D200A54EC5 /* PostInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E31B261FE6A4D200A54EC5 /* PostInformationViewController.swift */; };
+		55E31B291FE6C05000A54EC5 /* PostMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E31B281FE6C05000A54EC5 /* PostMapViewController.swift */; };
 		55FFB1D11FE58F61004F3379 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55FFB1D01FE58F61004F3379 /* GoogleService-Info.plist */; };
 		55FFB1D41FE5A1FE004F3379 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55FFB1D31FE5A1F0004F3379 /* Security.framework */; };
 		8464D7B51FE52B02000C563A /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8464D7B41FE52B02000C563A /* CommentViewController.swift */; };
@@ -63,6 +65,8 @@
 		5579B4911FD1DD260043A2FD /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		55A5DACA1FD96C9C00192CE2 /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		55A5DACC1FD9A18700192CE2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		55E31B261FE6A4D200A54EC5 /* PostInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInformationViewController.swift; sourceTree = "<group>"; };
+		55E31B281FE6C05000A54EC5 /* PostMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMapViewController.swift; sourceTree = "<group>"; };
 		55FFB1D01FE58F61004F3379 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		55FFB1D21FE5A07B004F3379 /* BDS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDS-Bridging-Header.h"; sourceTree = "<group>"; };
 		55FFB1D31FE5A1F0004F3379 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -109,6 +113,8 @@
 				551FE95D1FE2FA2A007CDC11 /* NewPostMapViewController.swift */,
 				55A5DACC1FD9A18700192CE2 /* HomeViewController.swift */,
 				8464D7B41FE52B02000C563A /* CommentViewController.swift */,
+				55E31B261FE6A4D200A54EC5 /* PostInformationViewController.swift */,
+				55E31B281FE6C05000A54EC5 /* PostMapViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -386,12 +392,14 @@
 				554682D91FE02902003AEA19 /* Image.swift in Sources */,
 				551FE95E1FE2FA2A007CDC11 /* NewPostMapViewController.swift in Sources */,
 				5579B4921FD1DD260043A2FD /* Category.swift in Sources */,
+				55E31B291FE6C05000A54EC5 /* PostMapViewController.swift in Sources */,
 				551C4C8A1FC5D291006C378D /* AppDelegate.swift in Sources */,
 				5531E0D41FD3302F00D76EF4 /* Post.swift in Sources */,
 				554682DB1FE02C64003AEA19 /* PagingResult.swift in Sources */,
 				554682D71FE01A29003AEA19 /* Common.swift in Sources */,
 				55A5DACD1FD9A18700192CE2 /* HomeViewController.swift in Sources */,
 				8464D7B71FE53249000C563A /* CommentTableViewCell.swift in Sources */,
+				55E31B271FE6A4D200A54EC5 /* PostInformationViewController.swift in Sources */,
 				8464D7B51FE52B02000C563A /* CommentViewController.swift in Sources */,
 				5561977A1FD412ED0020B04D /* Comment.swift in Sources */,
 				5531E0D01FD3300300D76EF4 /* PostTableViewCell.swift in Sources */,

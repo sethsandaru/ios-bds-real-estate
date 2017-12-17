@@ -14,7 +14,8 @@ target 'BDSNhom6' do
   pod 'Alamofire', '~> 4.5'
   pod 'Dropdowns'
   pod 'Kingfisher', '~> 3.13.1'
-  
+  pod 'ImageSlideshow/Kingfisher'
+
   #Firebase
   pod 'Firebase/Core'
   pod 'Firebase/Storage'
