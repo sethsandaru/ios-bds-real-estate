@@ -11,6 +11,7 @@ import Alamofire
 import SwiftyJSON
 import SideMenu
 import Dropdowns
+import Kingfisher
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     //MARK: Properties
@@ -109,7 +110,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.lblName.text = row.CreatedBy;
         cell.lblContent.text = row.Content;
         //cell.imgFeature.image = Common.Base64ToIMG(str: row.Images[0].Path);
-        cell.imgFeature.image(fromUrl: row.Images[0].Path)
+        //cell.imgFeature.image(fromUrl: row.Images[0].Path)
+        cell.imgFeature.kf.setImage(with: URL(string: row.Images[0].Path));
         cell.lblDate.text = dateFormatter.string(from: row.CreatedDate);
         cell.lblCategory.text = "Loại: " + row.Category!.Name;
         

@@ -32,7 +32,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uyh-64-i9i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-298" y="1074"/>
+            <point key="canvasLocation" x="-1090" y="346"/>
         </scene>
         <!--Thông tin-->
         <scene sceneID="elc-LN-O6S">
@@ -87,7 +87,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V2n-oV-RvM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="493.60000000000002" y="1073.6131934032985"/>
+            <point key="canvasLocation" x="-298" y="346"/>
         </scene>
         <!--Đăng bài mới-->
         <scene sceneID="Sgg-Ho-NwD">
@@ -190,8 +190,8 @@
                         <constraints>
                             <constraint firstItem="e6I-5M-TvT" firstAttribute="leading" secondItem="dLS-LZ-coc" secondAttribute="leadingMargin" id="Ebc-nV-As7"/>
                             <constraint firstItem="e6I-5M-TvT" firstAttribute="trailing" secondItem="dLS-LZ-coc" secondAttribute="trailingMargin" id="Efr-Vf-ru8"/>
-                            <constraint firstItem="0xq-fS-XPM" firstAttribute="top" secondItem="e6I-5M-TvT" secondAttribute="bottom" constant="20" id="biW-IO-B5t"/>
-                            <constraint firstItem="e6I-5M-TvT" firstAttribute="top" secondItem="tZf-yB-Q0S" secondAttribute="bottom" id="pug-11-zE1"/>
+                            <constraint firstItem="0xq-fS-XPM" firstAttribute="top" secondItem="e6I-5M-TvT" secondAttribute="bottom" constant="20" id="Keh-ea-AYW"/>
+                            <constraint firstItem="e6I-5M-TvT" firstAttribute="top" secondItem="tZf-yB-Q0S" secondAttribute="bottom" id="fNb-sd-U8l"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Đăng bài mới" id="ovw-P7-kfa">
@@ -276,6 +276,35 @@
             </objects>
             <point key="canvasLocation" x="1261.5999999999999" y="1844.5277361319343"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="5S8-GR-0Fn">
+            <objects>
+                <viewController id="j8X-Oc-TWZ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8yU-qt-8ZS"/>
+                        <viewControllerLayoutGuide type="bottom" id="8Rn-yo-A8T"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="t0O-oD-G38">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="TCz-tQ-xLB">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="TCz-tQ-xLB" firstAttribute="leading" secondItem="t0O-oD-G38" secondAttribute="leading" id="0j1-Yx-Dry"/>
+                            <constraint firstItem="8Rn-yo-A8T" firstAttribute="top" secondItem="TCz-tQ-xLB" secondAttribute="bottom" id="NMo-o6-3lj"/>
+                            <constraint firstAttribute="trailing" secondItem="TCz-tQ-xLB" secondAttribute="trailing" id="Zsd-bE-ZM3"/>
+                            <constraint firstItem="TCz-tQ-xLB" firstAttribute="top" secondItem="t0O-oD-G38" secondAttribute="top" id="cMj-Yx-AVv"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MXQ-To-NXc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1261.5999999999999" y="1073.6131934032985"/>
+        </scene>
         <!--Table View Controller-->
         <scene sceneID="TMz-Tj-Mvk">
             <objects>
@@ -303,86 +332,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IEA-HA-fdY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2274" y="1104"/>
-        </scene>
-        <!--Thong tin bai dang-->
-        <scene sceneID="lMD-KO-hPH">
-            <objects>
-                <viewController id="guA-OD-r08" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="7jE-Ic-DWO"/>
-                        <viewControllerLayoutGuide type="bottom" id="11Y-uh-HEr"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Sp3-Dz-Cb7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bai viet so 1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OLB-j9-TBf">
-                                <rect key="frame" x="0.0" y="296" width="375" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ngày đăng : 12/12/2017 15:30 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UVr-N7-ERR">
-                                <rect key="frame" x="16" y="339" width="351" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sNR-U2-zUG">
-                                <rect key="frame" x="16" y="378" width="343" height="222"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N9U-i5-Tuc">
-                                <rect key="frame" x="0.0" y="622" width="125" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="125" id="nNd-aV-jpP"/>
-                                    <constraint firstAttribute="height" constant="45" id="oSN-JH-p4T"/>
-                                </constraints>
-                                <state key="normal" title="Phone"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3O-0K-eya">
-                                <rect key="frame" x="125" y="622" width="125" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="6ZA-fN-Kzh"/>
-                                    <constraint firstAttribute="width" constant="125" id="MBT-fB-LUp"/>
-                                </constraints>
-                                <state key="normal" title="Map"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mh2-Vx-Y0R">
-                                <rect key="frame" x="250" y="622" width="125" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="3ZS-tm-EgE"/>
-                                    <constraint firstAttribute="width" constant="125" id="XGs-Vq-UyC"/>
-                                </constraints>
-                                <state key="normal" title="Comment"/>
-                            </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p5q-CQ-hPt" userLabel="ImageSlideShow" customClass="ImageSlideshow" customModule="ImageSlideshow">
-                                <rect key="frame" x="0.0" y="64" width="375" height="206"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="11Y-uh-HEr" firstAttribute="top" secondItem="N9U-i5-Tuc" secondAttribute="bottom" id="IJA-Ls-xmn"/>
-                            <constraint firstItem="mh2-Vx-Y0R" firstAttribute="leading" secondItem="V3O-0K-eya" secondAttribute="trailing" id="P0w-Hq-FpX"/>
-                            <constraint firstItem="N9U-i5-Tuc" firstAttribute="leading" secondItem="Sp3-Dz-Cb7" secondAttribute="leading" id="PO2-AO-tsR"/>
-                            <constraint firstItem="V3O-0K-eya" firstAttribute="leading" secondItem="N9U-i5-Tuc" secondAttribute="trailing" id="d3q-Sz-ipl"/>
-                            <constraint firstItem="11Y-uh-HEr" firstAttribute="top" secondItem="mh2-Vx-Y0R" secondAttribute="bottom" id="uXG-AV-AsB"/>
-                            <constraint firstItem="11Y-uh-HEr" firstAttribute="top" secondItem="V3O-0K-eya" secondAttribute="bottom" id="vPj-W5-9hu"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Thong tin bai dang" id="88v-kU-OLO"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="63j-Vg-i1y" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3172" y="398.95052473763121"/>
         </scene>
         <!--Nhóm 6 Estate-->
         <scene sceneID="5T6-Gs-w96">
@@ -517,6 +466,7 @@
                         <outlet property="tbPost" destination="zq1-Ff-UA2" id="2PE-HT-Afe"/>
                         <outlet property="txtSearch" destination="hJY-K0-TjV" id="jVk-nt-CAT"/>
                         <segue destination="2jf-sn-Nzw" kind="show" identifier="segueGoToAdd" id="PaV-jG-lnS"/>
+                        <segue destination="jF1-uZ-Jru" kind="show" id="hTa-4V-ST6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uol-Xf-zNh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -569,23 +519,79 @@
             </objects>
             <point key="canvasLocation" x="531.20000000000005" y="1844.9775112443779"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="u2n-zi-QXs">
+        <!--Thông tin bài viết-->
+        <scene sceneID="JUz-DH-cqy">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ENX-xU-641" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dmC-qs-Pom">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
+                <viewController id="jF1-uZ-Jru" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yLL-im-Pek"/>
+                        <viewControllerLayoutGuide type="bottom" id="PiC-Mq-bBn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lK4-dx-Weg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dxH-mr-hzn">
+                                <rect key="frame" x="16" y="64" width="343" height="583"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8lS-EY-bwH">
+                                        <rect key="frame" x="0.0" y="10" width="343" height="243"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jnA-pf-uqs" userLabel="ImgSlider" customClass="ImageSlideshow" customModule="ImageSlideshow">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="200"/>
+                                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="LLL-Ui-8iT"/>
+                                                </constraints>
+                                            </view>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Nội dung bài viết" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="siJ-vg-82X">
+                                                <rect key="frame" x="0.0" y="210" width="343" height="33"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                            <progressView hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pzz-5J-1rH">
+                                                <rect key="frame" x="0.0" y="243" width="343" height="0.0"/>
+                                                <color key="progressTintColor" red="0.1529411765" green="0.68235294120000001" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </progressView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="8lS-EY-bwH" firstAttribute="top" secondItem="dxH-mr-hzn" secondAttribute="top" constant="10" id="Ibk-Ci-Dg1"/>
+                                    <constraint firstAttribute="trailing" secondItem="8lS-EY-bwH" secondAttribute="trailing" id="WU1-0B-doZ"/>
+                                    <constraint firstItem="8lS-EY-bwH" firstAttribute="leading" secondItem="dxH-mr-hzn" secondAttribute="leading" id="aGy-7L-2Kt"/>
+                                    <constraint firstAttribute="bottom" secondItem="8lS-EY-bwH" secondAttribute="bottom" id="nId-9I-t4x"/>
+                                    <constraint firstItem="8lS-EY-bwH" firstAttribute="width" secondItem="dxH-mr-hzn" secondAttribute="width" id="z1b-Mt-Hy3"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dxH-mr-hzn" firstAttribute="top" secondItem="yLL-im-Pek" secondAttribute="bottom" id="OA1-G4-SKA"/>
+                            <constraint firstItem="PiC-Mq-bBn" firstAttribute="top" secondItem="dxH-mr-hzn" secondAttribute="bottom" constant="20" id="PkP-XT-4DA"/>
+                            <constraint firstItem="dxH-mr-hzn" firstAttribute="trailing" secondItem="lK4-dx-Weg" secondAttribute="trailingMargin" id="U0P-UB-0Ko"/>
+                            <constraint firstItem="dxH-mr-hzn" firstAttribute="leading" secondItem="lK4-dx-Weg" secondAttribute="leadingMargin" id="gUm-qs-6kv"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Thông tin bài viết" id="pes-sX-oQu">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="QfS-A3-lJg"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="bfc-R2-lRj">
+                            <connections>
+                                <action selector="menuSave:" destination="jF1-uZ-Jru" id="u3Y-RJ-czg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <segue destination="guA-OD-r08" kind="relationship" relationship="rootViewController" id="m1m-KG-9eN"/>
+                        <outlet property="progressBar" destination="Pzz-5J-1rH" id="YA4-k1-x7t"/>
+                        <outlet property="sliderIMG" destination="jnA-pf-uqs" id="yU9-so-6SF"/>
+                        <outlet property="stackMain" destination="8lS-EY-bwH" id="UbP-dM-1k5"/>
+                        <outlet property="txtContent" destination="siJ-vg-82X" id="uCc-AQ-oDy"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="84D-oJ-P1b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1zO-lt-MDi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2232.8000000000002" y="398.95052473763121"/>
+            <point key="canvasLocation" x="-298" y="1074"/>
         </scene>
     </scenes>
     <resources>
