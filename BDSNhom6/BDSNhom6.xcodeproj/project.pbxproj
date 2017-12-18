@@ -24,6 +24,7 @@
 		5579B4921FD1DD260043A2FD /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5579B4911FD1DD260043A2FD /* Category.swift */; };
 		55A5DACB1FD96C9C00192CE2 /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A5DACA1FD96C9C00192CE2 /* NewPostViewController.swift */; };
 		55A5DACD1FD9A18700192CE2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A5DACC1FD9A18700192CE2 /* HomeViewController.swift */; };
+		55ACE6781FE7ED19001DB23E /* SMIconLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ACE6771FE7ED19001DB23E /* SMIconLabel.swift */; };
 		55E31B271FE6A4D200A54EC5 /* PostInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E31B261FE6A4D200A54EC5 /* PostInformationViewController.swift */; };
 		55E31B291FE6C05000A54EC5 /* PostMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E31B281FE6C05000A54EC5 /* PostMapViewController.swift */; };
 		55FFB1D11FE58F61004F3379 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55FFB1D01FE58F61004F3379 /* GoogleService-Info.plist */; };
@@ -65,6 +66,7 @@
 		5579B4911FD1DD260043A2FD /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		55A5DACA1FD96C9C00192CE2 /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		55A5DACC1FD9A18700192CE2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		55ACE6771FE7ED19001DB23E /* SMIconLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMIconLabel.swift; sourceTree = "<group>"; };
 		55E31B261FE6A4D200A54EC5 /* PostInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInformationViewController.swift; sourceTree = "<group>"; };
 		55E31B281FE6C05000A54EC5 /* PostMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMapViewController.swift; sourceTree = "<group>"; };
 		55FFB1D01FE58F61004F3379 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 		5504B2351FD59DA400A4C81D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				55ACE6771FE7ED19001DB23E /* SMIconLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				5579B4921FD1DD260043A2FD /* Category.swift in Sources */,
 				55E31B291FE6C05000A54EC5 /* PostMapViewController.swift in Sources */,
 				551C4C8A1FC5D291006C378D /* AppDelegate.swift in Sources */,
+				55ACE6781FE7ED19001DB23E /* SMIconLabel.swift in Sources */,
 				5531E0D41FD3302F00D76EF4 /* Post.swift in Sources */,
 				554682DB1FE02C64003AEA19 /* PagingResult.swift in Sources */,
 				554682D71FE01A29003AEA19 /* Common.swift in Sources */,

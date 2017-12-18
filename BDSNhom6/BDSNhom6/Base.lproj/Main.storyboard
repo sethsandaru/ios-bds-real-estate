@@ -640,7 +640,7 @@
                                 <rect key="frame" x="16" y="64" width="343" height="553"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8lS-EY-bwH">
-                                        <rect key="frame" x="0.0" y="10" width="343" height="338"/>
+                                        <rect key="frame" x="0.0" y="10" width="343" height="338.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jnA-pf-uqs" userLabel="ImgSlider" customClass="ImageSlideshow" customModule="ImageSlideshow">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="200"/>
@@ -656,18 +656,18 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ngày đăng" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKM-Su-sUw">
-                                                <rect key="frame" x="0.0" y="244" width="343" height="18"/>
-                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                                                <rect key="frame" x="0.0" y="244" width="343" height="19.5"/>
+                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Địa chỉ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drx-Zx-WyW">
-                                                <rect key="frame" x="0.0" y="272" width="343" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Địa chỉ" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LdF-86-L1c">
+                                                <rect key="frame" x="0.0" y="273.5" width="343" height="19.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Nội dung bài viết" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siJ-vg-82X">
-                                                <rect key="frame" x="0.0" y="302.5" width="343" height="35.5"/>
+                                                <rect key="frame" x="0.0" y="303" width="343" height="35.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -739,9 +739,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="lblAddress" destination="drx-Zx-WyW" id="l2C-xL-dzK"/>
+                        <outlet property="lblAddress" destination="LdF-86-L1c" id="Bl9-RL-bZB"/>
                         <outlet property="lblContent" destination="siJ-vg-82X" id="xzk-Ax-7GV"/>
-                        <outlet property="lblDate" destination="gKM-Su-sUw" id="aGA-wz-5cb"/>
+                        <outlet property="lblDate" destination="gKM-Su-sUw" id="8ll-ok-ncT"/>
                         <outlet property="lblTitle" destination="fwq-cc-Ksb" id="5E4-7R-2Qy"/>
                         <outlet property="sliderIMG" destination="jnA-pf-uqs" id="m6q-l0-shH"/>
                         <segue destination="j8X-Oc-TWZ" kind="show" id="bHS-ww-p14"/>

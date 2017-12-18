@@ -56,8 +56,12 @@ class PostInformationViewController: UIViewController {
         // set info
         lblTitle.text = post?.Title;
         lblContent.text = post?.Content;
-        lblDate.text = "Ngày đăng: " + dateFormat.string(from: (post?.CreatedDate)!);
-        lblAddress.text = "Địa chỉ: " + (post?.Address)!;
+        
+        // icon for address
+        lblAddress.attributedText = lblIconTextHelper(icon: "mapIcon", text: (post?.Address)!);
+        
+        // icon for date
+        lblDate.attributedText = lblIconTextHelper(icon: "timeIcon", text: dateFormat.string(from: (post?.CreatedDate)!));
         
         // source image for slider
         var sourceIMG : [KingfisherSource] = [KingfisherSource]();
@@ -142,5 +146,32 @@ class PostInformationViewController: UIViewController {
                 UIApplication.shared.openURL(url)
             }
         }
+    }
+    
+    //MARK: Label text and icon helper
+    private func lblIconTextHelper(icon : String, text : String) -> NSMutableAttributedString
+    {
+        // create attachment and icon
+        let imageAttachment =  NSTextAttachment()
+        imageAttachment.image = UIImage(named: icon)
+        
+        //Set bound to reposition
+        let imageOffsetY:CGFloat = -5.0;
+        imageAttachment.bounds = CGRect(x: 0, y: imageOffsetY, width: imageAttachment.image!.size.width, height: imageAttachment.image!.size.height)
+        
+        //Create string with attachment
+        let attachmentString = NSAttributedString(attachment: imageAttachment)
+        
+        //Initialize mutable string
+        let completeText = NSMutableAttributedString(string: "")
+        
+        //Add image to mutable string
+        completeText.append(attachmentString)
+        
+        //Add your text to mutable string
+        let  textAfterIcon = NSMutableAttributedString(string: text)
+        completeText.append(textAfterIcon)
+        
+        return completeText;
     }
 }
