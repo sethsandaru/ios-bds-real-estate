@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 struct Image
 {
@@ -14,6 +15,15 @@ struct Image
     var PostID : Int;
     var Path : String;
     
+    static func ImagesFromJsonArray(jsonArr : JSON) -> [Image]
+    {
+        var imgs = [Image]();
+        for (_, dict) in jsonArr {
+            imgs.append(Image(ID: dict["ID"].intValue, PostID: dict["PostID"].intValue, Path: dict["Path"].stringValue))
+        }
+        
+        return imgs;
+    }
     
     // object => json parameter helper
     var dictionaryParams : [String : Any?]

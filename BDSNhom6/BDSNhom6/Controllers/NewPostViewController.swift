@@ -13,8 +13,9 @@ import Alamofire
 import SwiftyJSON
 import FirebaseCore
 import FirebaseStorage
+import Fusuma
 
-class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class NewPostViewController: UIViewController, FusumaDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     //MARK: Properties
     @IBOutlet weak var lblTitle: UITextField!
     @IBOutlet weak var lblName: UITextField!
@@ -38,8 +39,8 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
     var progressBarRatio : Float = 0;
     
     //MARK: Image Picker Configuration
-    let imagePicker = OpalImagePickerController()
-    let maxiumPick = 5;
+    let imagePicker = FusumaViewController()
+    //let maxiumPick = 5;
     
     //MARK: Other config
     let placeHolderContent = "Nội dung bài viết";
@@ -66,6 +67,13 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
         
         
         // image picker settings
+        imagePicker.delegate = self;
+        imagePicker.allowMultipleSelection = true;
+        imagePicker.availableModes = [.library, .camera];
+        
+        fusumaCropImage = false;
+        
+        /* Opal
         self.imagePicker.imagePickerDelegate = self;
         imagePicker.maximumSelectionsAllowed = maxiumPick;
         imagePicker.allowedMediaTypes = Set([.image])
@@ -75,7 +83,7 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
         let configuration = OpalImagePickerConfiguration()
         configuration.maximumSelectionsAllowedMessage = NSLocalizedString("Bạn không thể chọn quá \(maxiumPick) hình!", comment: "")
         configuration.navigationTitle = "Chọn hình ảnh";
-        imagePicker.configuration = configuration
+        imagePicker.configuration = configuration*/
 
         
         // slidershow settings
@@ -121,6 +129,45 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
         present(imagePicker, animated: true, completion: nil)
     }
     
+    
+    func fusumaImageSelected(_ image: UIImage, source: FusumaMode) {
+        return;
+    }
+    
+    func fusumaMultipleImageSelected(_ images: [UIImage], source: FusumaMode) {
+        // get source
+        var imgSource : [ImageSource] = [ImageSource]();
+        
+        // config progressbar
+        progressBar.isHidden = false;
+        progressBar.setProgress(0, animated: false);
+        self.progressBarRatio = Float(1) / Float(images.count); // set ratio per finished
+        
+        Images.removeAll();
+        // add and show to slide
+        for img in images {
+            let src = ImageSource(image: img);
+            imgSource.append(src);
+            
+            // upload to firebase
+            uploadImage(image: img);
+            
+            // add source
+            //Images.append(Image(ID: 0, PostID: 0, Path: Common.IMGToBase64(img: img)));
+        }
+        
+        sliderIMG.setImageInputs(imgSource);
+    }
+    
+    func fusumaVideoCompleted(withFileURL fileURL: URL) {
+        return;
+    }
+    
+    func fusumaCameraRollUnauthorized() {
+        return;
+    }
+    
+    /*
     func imagePicker(_ picker: OpalImagePickerController, didFinishPickingImages images: [UIImage]) {
         // get source
         var imgSource : [ImageSource] = [ImageSource]();
@@ -155,7 +202,7 @@ class NewPostViewController: UIViewController, OpalImagePickerControllerDelegate
         sliderIMG.setImageInputs([]);
         progressBar.isHidden = true;
         presentedViewController?.dismiss(animated: true, completion: nil)
-    }
+    }*/
     
     //MARK: TextView Delegate
     func textViewDidBeginEditing(_ textView: UITextView) {

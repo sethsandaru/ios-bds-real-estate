@@ -118,6 +118,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oyt-H3-NX4">
                                         <rect key="frame" x="300" y="0.0" width="75" height="79"/>
                                         <state key="normal" title="Đăng"/>
+                                        <connections>
+                                            <action selector="btnCommentClick:" destination="I6d-fQ-JCC" eventType="touchUpInside" id="15t-w1-Pw6"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -144,7 +147,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="btnSubmit" destination="Oyt-H3-NX4" id="1Ah-a8-lDE"/>
                         <outlet property="tbComment" destination="Nb3-GA-41q" id="Krs-sX-TcV"/>
+                        <outlet property="txtComment" destination="gUw-z5-vL7" id="6BR-s5-PLP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IVJ-N4-uqC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -419,7 +424,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Vị trí bản đồ" id="CO7-GC-5ca">
                         <barButtonItem key="backBarButtonItem" title="Back" id="acH-bz-PpU"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="Xrz-bc-TS9"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="Xrz-bc-TS9">
+                            <connections>
+                                <action selector="btnInfoClick:" destination="j8X-Oc-TWZ" id="2vh-er-ata"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="wgx-E2-QPA" id="ny3-cx-XTK"/>
@@ -680,6 +689,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tVS-Ci-Bc6">
                                         <rect key="frame" x="0.0" y="0.0" width="124" height="50"/>
                                         <color key="backgroundColor" red="0.20392156862745098" green="0.59607843137254901" blue="0.85882352941176465" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Alo!" image="phoneIcon"/>
                                         <connections>
                                             <action selector="btnPhoneClick:" destination="jF1-uZ-Jru" eventType="touchUpInside" id="pt3-ql-HEC"/>

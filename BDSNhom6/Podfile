@@ -15,6 +15,7 @@ target 'BDSNhom6' do
   pod 'Dropdowns'
   pod 'Kingfisher', '~> 3.13.1'
   pod 'ImageSlideshow/Kingfisher'
+  pod 'Fusuma'
 
   #Firebase
   pod 'Firebase/Core'

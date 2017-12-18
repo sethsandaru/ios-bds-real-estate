@@ -162,12 +162,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // clear and get again
         Posts.removeAll();
         dataInit(keyword: keyword, categoryID: nowCategory);
-        
-        // tat refresh khi xong
-        refreshControl.endRefreshing()
-        
-        // set lai title
-        refreshControl.attributedTitle = NSAttributedString(string: "Vuốt lên để refresh");
     }
     
     
@@ -243,9 +237,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     
                     if (self.totalItem > 0) {
                         // fetch all posts in this
-                        for (index, dict) in JsonData["Data"]
+                        for (_, dict) in JsonData["Data"]
                         {
-                            var thisPost = Post(ID: dict["ID"].intValue,
+                            let thisPost = Post(ID: dict["ID"].intValue,
                                                 CategoryID: dict["CategoryID"].intValue,
                                                 Title: dict["Title"].stringValue,
                                                 Content: dict["Content"].stringValue,
@@ -258,12 +252,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                                 Activate: dict["Activate"].boolValue,
                                                 Category: Category(ID: dict["Category"]["ID"].intValue, Name: dict["Category"]["Name"].stringValue),
                                                 Comments: nil,
-                                                Images: [Image]());
-                            
-                            // Lay ra 1 tam hinh duy nhat
-                            for (i2, d2) in dict["Images"] {
-                                thisPost.Images.append(Image(ID: d2["ID"].intValue, PostID: d2["PostID"].intValue, Path: d2["Path"].stringValue))
-                            }
+                                                Images: Image.ImagesFromJsonArray(jsonArr: dict["Images"]));
                             
                             // add to array
                             self.Posts.append(thisPost);
@@ -286,6 +275,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
             }
             
+            // tat refresh khi xong
+            self.refreshControl.endRefreshing()
+            
+            // set lai title
+            self.refreshControl.attributedTitle = NSAttributedString(string: "Vuốt lên để refresh");
+            
+            // loading remove
             self.removeLoadingScreen();
             
         }
@@ -305,10 +301,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             case .success(_):
                 if response.result.value != nil{
                     // parse json
-                    var JsonData = JSON(response.result.value!);
+                    let JsonData = JSON(response.result.value!);
                     
                     // fetch all posts in this
-                    for (index, dict) in JsonData
+                    for (_, dict) in JsonData
                     {
                         let thisCate = Category(ID: dict["ID"].intValue, Name: dict["Name"].stringValue);
                         
@@ -326,6 +322,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 
             case .failure(_):
                 print(response.result.error)
+                self.present(Common.Notification(title: "Lỗi", mess: "Lấy comment thất bại, xin hãy thử lại sau!", okBtn: "Quay lại"), animated: true, completion: nil)
                 break
                 
             }

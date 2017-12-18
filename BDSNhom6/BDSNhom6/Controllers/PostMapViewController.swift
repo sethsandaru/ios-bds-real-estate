@@ -63,6 +63,7 @@ class PostMapViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    // add marker to map (apple call marker as annotation)
     private func setAnno()
     {
         let coord : CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: (post?.Latt)!, longitude: (post?.Long)!)
@@ -76,7 +77,11 @@ class PostMapViewController: UIViewController {
         mapView.showAnnotations(mapView.annotations, animated: true);
     }
     
-
+    //MARK: Show info
+    @IBAction func btnInfoClick(_ sender: UIBarButtonItem) {
+        present(Common.Notification(title: "Thông tin", mess: "Đăng bởi: \(post?.CreatedBy ?? "")\nSDT: \(post?.Phone ?? "")\nĐịa chỉ: \(post?.Address ?? "")", okBtn: "Quay lại"), animated: true, completion: nil);
+    }
+    
     /*
     // MARK: - Navigation
 
