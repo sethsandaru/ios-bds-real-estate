@@ -7,12 +7,17 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 struct Category
 {
     var ID : Int;
     var Name : String;
     
+    static func JsonToObject(json : JSON) -> Category
+    {
+        return Category(ID: json["ID"].intValue, Name: json["Name"].stringValue);
+    }
     
     var dictionaryParams : [String : Any?]
     {

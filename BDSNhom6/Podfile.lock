@@ -36,7 +36,6 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - OpalImagePicker (1.4.0)
   - SideMenu (3.1.5)
   - SwiftyJSON (4.0.0)
 
@@ -49,7 +48,6 @@ DEPENDENCIES:
   - ImageSlideshow (~> 1.4)
   - ImageSlideshow/Kingfisher
   - Kingfisher (~> 3.13.1)
-  - OpalImagePicker (~> 1.4.0)
   - SideMenu
   - SwiftyJSON
 
@@ -67,10 +65,9 @@ SPEC CHECKSUMS:
   ImageSlideshow: 1bb0e610e28a71e8936d57265d882f61714a470b
   Kingfisher: ed9707a409cc47fddafbcd12a43a9757e3600af5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  OpalImagePicker: 64c2d87f8e1839d1233a6720d3909a22504e3c5d
   SideMenu: 47dbf9e4d878062d8994aed43f6e4bf6c1fea30b
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 8cb8ef9ae1d24855d97f3a0d88644ec4879ab325
+PODFILE CHECKSUM: 4d5a66c3e7c8298e63ff16346a97369579e8f916
 
 COCOAPODS: 1.3.1

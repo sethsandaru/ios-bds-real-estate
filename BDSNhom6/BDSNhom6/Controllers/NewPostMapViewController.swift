@@ -102,6 +102,9 @@ class NewPostMapViewController: UIViewController, UIGestureRecognizerDelegate, U
             let annotation = MKPointAnnotation()
             annotation.coordinate = location.coordinate
             self.mapView.addAnnotation(annotation)
+            
+            // show to this place
+            self.mapView.showAnnotations(self.mapView.annotations, animated: true);
         }
     }
     

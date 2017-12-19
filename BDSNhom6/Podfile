@@ -8,7 +8,7 @@ target 'BDSNhom6' do
   # Pods for BDSNhom6
 
   pod 'SideMenu'
-  pod 'OpalImagePicker', '~> 1.4.0'
+  #pod 'OpalImagePicker', '~> 1.4.0'
   pod 'SwiftyJSON'
   pod 'ImageSlideshow', '~> 1.4'
   pod 'Alamofire', '~> 4.5'

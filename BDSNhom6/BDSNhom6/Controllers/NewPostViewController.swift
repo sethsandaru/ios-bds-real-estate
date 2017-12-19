@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import OpalImagePicker
 import ImageSlideshow
 import Alamofire
 import SwiftyJSON
@@ -49,6 +48,7 @@ class NewPostViewController: UIViewController, FusumaDelegate, UITextViewDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround();
         
         // date format
         dateFormat.dateFormat = "dd_MM_yyyy_HH_mm_ss";

@@ -141,7 +141,7 @@ enum Controller : String {
 extension UIImageView {
     public func image(fromUrl urlString: String) {
         guard let url = URL(string: urlString) else {
-            os_log("Couldn't create URL from: ", urlString)
+            print("Couldn't create URL from: \(urlString)")
             return
         }
         let theTask = URLSession.shared.dataTask(with: url) {
@@ -193,4 +193,50 @@ extension UIColor {
         }
         self.init(red: CGFloat(r) / 255, green: CGFloat(g) / 255, blue: CGFloat(b) / 255, alpha: CGFloat(a) / 255)
     }
+}
+
+//MAKR: Extension to close keyboard
+// Put this piece of code anywhere you like
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
+// MARK: Loading Footer
+
+extension UITableView {
+    
+    func showLoadingFooter(){
+        let loadingFooter = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        loadingFooter.frame.size.height = 50
+        loadingFooter.hidesWhenStopped = true
+        loadingFooter.startAnimating()
+        tableFooterView = loadingFooter
+    }
+    
+    func hideLoadingFooter(){
+        let tableContentSufficentlyTall = (contentSize.height > frame.size.height)
+        let atBottomOfTable = (contentOffset.y >= contentSize.height - frame.size.height)
+        if atBottomOfTable && tableContentSufficentlyTall {
+            UIView.animate(withDuration: 0.2, animations: {
+                self.contentOffset.y = self.contentOffset.y - 50
+            }, completion: { finished in
+                self.tableFooterView = UIView()
+            })
+        } else {
+            self.tableFooterView = UIView()
+        }
+    }
+    
+    func isLoadingFooterShowing() -> Bool {
+        return tableFooterView is UIActivityIndicatorView
+    }
+    
 }

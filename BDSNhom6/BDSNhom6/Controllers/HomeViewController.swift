@@ -22,13 +22,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var Posts : [Post] = [Post]();
     var Categories : [Category] = [Category]();
     let dateFormatter = DateFormatter();
-    var perPage = 10;
-    var nowPage = 1;
+    var perPage = 3;
+    //var nowPage = 1;
     var skip = 0;
     var totalItem = 0;
     var keyword : String = "";
     var nowCategory : Int? = nil;
     var isCategorying : Bool = true;
+    var isPosting : Bool = true;
     private let segueAddID : String = "NewPostViewController";
     private let seguePostID : String = "PostInformationViewController";
     private let appTitle : String = "Nhóm 6 Estate";
@@ -136,14 +137,22 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.navigationController?.pushViewController(viewController, animated: true);
     }
     
+    
     // Load more khi tận cùng
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let last = Posts.count - 1;
         
-        if last == indexPath.row && Posts.count < totalItem && spinner.isHidden == true
+        if (last == indexPath.row && Posts.count < totalItem && isPosting == false)
         {
+            // binded status
+            isPosting = true;
+            tbPost.showLoadingFooter();
+            
             //get more here
             skip = skip + perPage;
+         
+            // now get more
+            print("Get more skip at: \(skip)");
             
             // get and no clear anything because get more =.=
             dataInit(keyword: keyword, categoryID: nowCategory);
@@ -153,6 +162,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     // kéo lên để refresh
     func refresh(sender:AnyObject) {
         print("Đã kéo lên")
+        
+        if isPosting {
+            return;
+        }
+        
         // set lai title
         refreshControl.attributedTitle = NSAttributedString(string: "Đang refresh lại...");
         
@@ -210,6 +224,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // set loading
         startLoadingScreen();
         tbPost.alpha = 0.4;
+        isPosting = true;
         
         // preparing API
         Common.SetController(controller: .Post);
@@ -235,7 +250,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     // set total
                     self.totalItem = JsonData["Total"].intValue;
                     
-                    if (self.totalItem > 0) {
+                    if (self.totalItem > 0 && JsonData["Data"].arrayValue.count > 0) {
                         // fetch all posts in this
                         for (_, dict) in JsonData["Data"]
                         {
@@ -250,7 +265,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                                                 CreatedDate: Common.getDate(dateString: dict["CreatedDate"].stringValue),
                                                 CreatedBy: dict["CreatedBy"].stringValue,
                                                 Activate: dict["Activate"].boolValue,
-                                                Category: Category(ID: dict["Category"]["ID"].intValue, Name: dict["Category"]["Name"].stringValue),
+                                                Category: Category.JsonToObject(json: dict["Category"]),
                                                 Comments: nil,
                                                 Images: Image.ImagesFromJsonArray(jsonArr: dict["Images"]));
                             
@@ -261,7 +276,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     
                     // need to reload before see it
                     self.tbPost.reloadData();
-                    self.tbPost.alpha = 1;
                 }
                 break
                 
@@ -283,6 +297,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             // loading remove
             self.removeLoadingScreen();
+            
+            // tat trang thai
+            self.isPosting = false;
+            self.tbPost.alpha = 1;
+            self.tbPost.hideLoadingFooter();
             
         }
         
@@ -306,10 +325,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     // fetch all posts in this
                     for (_, dict) in JsonData
                     {
-                        let thisCate = Category(ID: dict["ID"].intValue, Name: dict["Name"].stringValue);
-                        
                         // add to array
-                        self.Categories.append(thisCate);
+                        self.Categories.append(Category.JsonToObject(json: dict));
                     }
                     
                     print("Get categories is done, total: \(self.Categories.count)");
@@ -352,6 +369,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         titleView?.action = { [weak self] index in
             let cate = self?.Categories[index];
             
+            // get again so skip must be 0
+            self?.skip = 0;
+            self?.keyword = "";
+            
+            // home page or not
             if (cate?.ID == 0)
             {
                 self?.nowCategory = nil
@@ -363,7 +385,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             // get data
             self?.Posts.removeAll(); // remove all post before search
-            self?.dataInit(keyword: "", categoryID: self?.nowCategory);
+            self?.dataInit(keyword: self?.keyword ?? "", categoryID: self?.nowCategory);
         }
         
         navigationItem.titleView = titleView
