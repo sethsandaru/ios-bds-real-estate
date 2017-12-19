@@ -291,8 +291,8 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Sets the view which contains the loading text and the spinner
         let width: CGFloat = 120
         let height: CGFloat = 30
-        let x = (self.tbComment.frame.width / 2) - (width / 2)
-        let y = (self.tbComment.frame.height / 2) - (height / 2) - (navigationController?.navigationBar.frame.height)!
+        let x = (self.view.frame.width / 2) - (width / 2)
+        let y = (self.view.frame.height / 2) - (height / 2) - (navigationController?.navigationBar.frame.height)!
         loadingView.frame = CGRect(x: x, y: y, width: width, height: height)
         
         // Sets loading text

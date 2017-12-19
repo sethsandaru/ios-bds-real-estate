@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2AEA1B912AAABCC4F5DC83DE /* Pods_BDSNhom6.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A88AF6AE3B44824FF052B666 /* Pods_BDSNhom6.framework */; };
+		5505A8211FE97BF200509AF9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5505A8201FE97BF200509AF9 /* GoogleService-Info.plist */; };
 		551C4C8A1FC5D291006C378D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551C4C891FC5D291006C378D /* AppDelegate.swift */; };
 		551C4C8F1FC5D291006C378D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 551C4C8D1FC5D291006C378D /* Main.storyboard */; };
 		551C4C911FC5D291006C378D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 551C4C901FC5D291006C378D /* Assets.xcassets */; };
@@ -27,7 +28,6 @@
 		55ACE6781FE7ED19001DB23E /* SMIconLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55ACE6771FE7ED19001DB23E /* SMIconLabel.swift */; };
 		55E31B271FE6A4D200A54EC5 /* PostInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E31B261FE6A4D200A54EC5 /* PostInformationViewController.swift */; };
 		55E31B291FE6C05000A54EC5 /* PostMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E31B281FE6C05000A54EC5 /* PostMapViewController.swift */; };
-		55FFB1D11FE58F61004F3379 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55FFB1D01FE58F61004F3379 /* GoogleService-Info.plist */; };
 		55FFB1D41FE5A1FE004F3379 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 55FFB1D31FE5A1F0004F3379 /* Security.framework */; };
 		8464D7B51FE52B02000C563A /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8464D7B41FE52B02000C563A /* CommentViewController.swift */; };
 		8464D7B71FE53249000C563A /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8464D7B61FE53248000C563A /* CommentTableViewCell.swift */; };
@@ -46,6 +46,7 @@
 /* Begin PBXFileReference section */
 		2CF1776C9BFB10EBF907FE5A /* Pods-BDSNhom6.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDSNhom6.release.xcconfig"; path = "Pods/Target Support Files/Pods-BDSNhom6/Pods-BDSNhom6.release.xcconfig"; sourceTree = "<group>"; };
 		496012C758A48BE67F8BEEB7 /* Pods-BDSNhom6.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BDSNhom6.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BDSNhom6/Pods-BDSNhom6.debug.xcconfig"; sourceTree = "<group>"; };
+		5505A8201FE97BF200509AF9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		551C4C861FC5D291006C378D /* BDSNhom6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BDSNhom6.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		551C4C891FC5D291006C378D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		551C4C8E1FC5D291006C378D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -69,7 +70,6 @@
 		55ACE6771FE7ED19001DB23E /* SMIconLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMIconLabel.swift; sourceTree = "<group>"; };
 		55E31B261FE6A4D200A54EC5 /* PostInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInformationViewController.swift; sourceTree = "<group>"; };
 		55E31B281FE6C05000A54EC5 /* PostMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMapViewController.swift; sourceTree = "<group>"; };
-		55FFB1D01FE58F61004F3379 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		55FFB1D21FE5A07B004F3379 /* BDS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDS-Bridging-Header.h"; sourceTree = "<group>"; };
 		55FFB1D31FE5A1F0004F3379 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		8464D7B41FE52B02000C563A /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
@@ -170,8 +170,8 @@
 				551C4C901FC5D291006C378D /* Assets.xcassets */,
 				551C4C8D1FC5D291006C378D /* Main.storyboard */,
 				551C4C921FC5D291006C378D /* LaunchScreen.storyboard */,
+				5505A8201FE97BF200509AF9 /* GoogleService-Info.plist */,
 				551C4C951FC5D291006C378D /* Info.plist */,
-				55FFB1D01FE58F61004F3379 /* GoogleService-Info.plist */,
 				55FFB1D21FE5A07B004F3379 /* BDS-Bridging-Header.h */,
 			);
 			path = BDSNhom6;
@@ -300,7 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				551C4C941FC5D291006C378D /* LaunchScreen.storyboard in Resources */,
-				55FFB1D11FE58F61004F3379 /* GoogleService-Info.plist in Resources */,
+				5505A8211FE97BF200509AF9 /* GoogleService-Info.plist in Resources */,
 				551C4C911FC5D291006C378D /* Assets.xcassets in Resources */,
 				551C4C8F1FC5D291006C378D /* Main.storyboard in Resources */,
 			);

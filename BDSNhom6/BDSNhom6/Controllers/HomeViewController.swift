@@ -22,7 +22,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var Posts : [Post] = [Post]();
     var Categories : [Category] = [Category]();
     let dateFormatter = DateFormatter();
-    var perPage = 3;
+    var perPage = 10;
     //var nowPage = 1;
     var skip = 0;
     var totalItem = 0;
@@ -364,7 +364,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         // set title view
         let titleView = TitleView(navigationController: navigationController!, title: appTitle, items: items);
-        
+                
         // action when choose category
         titleView?.action = { [weak self] index in
             let cate = self?.Categories[index];
@@ -420,8 +420,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Sets the view which contains the loading text and the spinner
         let width: CGFloat = 120
         let height: CGFloat = 30
-        let x = (self.tbPost.frame.width / 2) - (width / 2)
-        let y = (self.tbPost.frame.height / 2) - (height / 2) - (navigationController?.navigationBar.frame.height)!
+        let x = (self.view.frame.width / 2) - (width / 2)
+        let y = (self.view.frame.height / 2) - (height / 2) - (navigationController?.navigationBar.frame.height)!
         loadingView.frame = CGRect(x: x, y: y, width: width, height: height)
         
         // Sets loading text

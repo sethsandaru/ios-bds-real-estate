@@ -70,22 +70,8 @@ class NewPostViewController: UIViewController, FusumaDelegate, UITextViewDelegat
         imagePicker.delegate = self;
         imagePicker.allowMultipleSelection = true;
         imagePicker.availableModes = [.library, .camera];
-        
         fusumaCropImage = false;
-        
-        /* Opal
-        self.imagePicker.imagePickerDelegate = self;
-        imagePicker.maximumSelectionsAllowed = maxiumPick;
-        imagePicker.allowedMediaTypes = Set([.image])
-        imagePicker.navigationBar.tintColor = UIColor.white;
-        imagePicker.navigationBar.barTintColor = UIColor(hexString: "#27ae60");
-        imagePicker.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white];
-        let configuration = OpalImagePickerConfiguration()
-        configuration.maximumSelectionsAllowedMessage = NSLocalizedString("Bạn không thể chọn quá \(maxiumPick) hình!", comment: "")
-        configuration.navigationTitle = "Chọn hình ảnh";
-        imagePicker.configuration = configuration*/
-
-        
+		
         // slidershow settings
         sliderIMG.backgroundColor = UIColor.white
         sliderIMG.slideshowInterval = 5.0
@@ -131,7 +117,16 @@ class NewPostViewController: UIViewController, FusumaDelegate, UITextViewDelegat
     
     
     func fusumaImageSelected(_ image: UIImage, source: FusumaMode) {
-        return;
+        sliderIMG.setImageInputs([ImageSource(image: image)]);
+        
+        // progress
+        // config progressbar
+        progressBar.isHidden = false;
+        progressBar.setProgress(0, animated: false);
+        self.progressBarRatio = 1; // set ratio per finished
+        
+        // upload to firebase
+        uploadImage(image: image);
     }
     
     func fusumaMultipleImageSelected(_ images: [UIImage], source: FusumaMode) {
@@ -273,7 +268,7 @@ class NewPostViewController: UIViewController, FusumaDelegate, UITextViewDelegat
         }
         
         // new object
-        var newPost = Post(ID: 0, CategoryID: categoryID, Title: title!, Content: content!, Phone: phone!, Address: address!, Latt: latt, Long: long, CreatedDate: Date(), CreatedBy: name!, Activate: false, Category: nil, Comments: nil, Images: Images);
+        let newPost = Post(ID: 0, CategoryID: categoryID, Title: title!, Content: content!, Phone: phone!, Address: address!, Latt: latt, Long: long, CreatedDate: Date(), CreatedBy: name!, Activate: false, Category: nil, Comments: nil, Images: Images);
         
         // set controller and get URL
         Common.SetController(controller: .Post);
@@ -363,7 +358,7 @@ class NewPostViewController: UIViewController, FusumaDelegate, UITextViewDelegat
     
     //MARK: Firebase Upload Image
     private func uploadImage(image: UIImage) {
-        // name
+        // name	
         let nowDate = Date();
         let randomName = Common.RandomString(length: 10);
         
