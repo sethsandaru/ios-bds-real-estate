@@ -1,5 +1,8 @@
 # ios-bds-real-estate
 ## iOS Real Estate Application by Phat Tran
+Mainly it's a project made by Nhom 6, but due to the members don't want/have enought specs to work with. 
+So I made it alone before it reached the deadline.
+Thankfully, I made it and got maximum score for this project.
 
 ## Description
 An Real Estate project that allowed:
