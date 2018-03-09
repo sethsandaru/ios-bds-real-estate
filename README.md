@@ -31,10 +31,10 @@ An Real Estate project that allowed:
 Special thanks to all!
 
 ## Server side:
-Visit: 
+Visit: https://github.com/sethsandaru/bds-real-estate-webapi
 
 ## Note:
-Please use the newest XCode in order to open this project properly without any error. Thanks
+Please use the newest XCode in order to open this project properly without any errors. Thanks
 
 
 
